@@ -8,6 +8,10 @@
   text-transform: uppercase;
 }
 
+.rounded {
+  width: 150px;
+}
+
 .container {
   position: absolute;
   top: 100px;
