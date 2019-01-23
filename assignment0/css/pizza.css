@@ -1,3 +1,10 @@
+body {
+  background-image: url("../img/pizza-bg.jpg");
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-position-x: -160px;
+}
+
 .header {
   position: absolute;
   top: 0px;
@@ -15,7 +22,6 @@
 .container {
   position: absolute;
   top: 100px;
-  color: white;
 }
 
 .footer {
@@ -26,16 +32,13 @@
 }
 
 .footer a {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 
 .content {
   min-height: 400px;
-}
-
-.section2 {
-  min-height: 100px;
+  margin: auto;
 }
 
 #signup {
@@ -47,6 +50,12 @@
   margin: auto;
   width: 250px;
 }
+
+#logout {
+  margin: auto;
+  width: 250px;
+}
+
 #pay {
   margin: auto;
   width: 250px;
