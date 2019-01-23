@@ -1,8 +1,7 @@
 body {
   background-image: url("../img/pizza-bg.jpg");
   background-repeat: no-repeat;
-  background-clip: content-box;
-  background-position-x: -160px;
+  background-position: top;
 }
 
 .header {
