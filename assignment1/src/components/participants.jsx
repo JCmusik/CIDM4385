@@ -9,10 +9,10 @@ class Participants extends Component {
   render() {
     return (
       <div class="content p-4 text-center">
-        <img src={Dominos} alt="dominos" class="rounded p-1" />
-        <img src={PapaJohns} alt="papa johns" class="rounded p-1" />
-        <img src={PizzaHut} alt="pizza hut" class="rounded p-1" />
-        <img src={PizzaPlanet} alt="pizza hut" class="rounded p-1" />
+        <img src={Dominos} alt="dominos" className="rounded p-1" />
+        <img src={PapaJohns} alt="papa johns" className="rounded p-1" />
+        <img src={PizzaHut} alt="pizza hut" className="rounded p-1" />
+        <img src={PizzaPlanet} alt="pizza hut" className="rounded p-1" />
       </div>
     );
   }

@@ -4,7 +4,7 @@ class Footer extends Component {
   state = {};
   render() {
     return (
-      <div class="footer bg-secondary text-center">
+      <div className="footer bg-secondary text-center">
         {/* <a href="index.html">Home</a> | <a href="signup.html">SignUp</a> |
         <a href="login.html">Login</a> | <a href="welcome.html">Welcome</a> |
         <a href="pay.html">Pay</a> |{" "}

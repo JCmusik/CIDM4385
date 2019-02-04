@@ -15,7 +15,7 @@ body {
 }
 
 .rounded {
-  width: 150px;
+  width: 10em;
 }
 
 .container {
@@ -36,30 +36,30 @@ body {
 }
 
 .content {
-  min-height: 400px;
+  min-height: 25rem;
   margin: auto;
 }
 
 #signup {
   margin: auto;
-  width: 250px;
+  width: 15rem;
 }
 
 #login {
   margin: auto;
-  width: 250px;
+  width: 15rem;
 }
 
 #logout {
   margin: auto;
-  width: 250px;
+  width: 15rem;
 }
 
 #pay {
   margin: auto;
-  width: 250px;
+  width: 15rem;
 }
 #select {
   margin: auto;
-  width: 250px;
+  width: 15rem;
 }

@@ -4,7 +4,7 @@ class Header extends Component {
   state = {};
   render() {
     return (
-      <div class="header bg-secondary text-white text-center">
+      <div className="header bg-secondary text-white text-center">
         Low Budget Pizza Delivery
       </div>
     );

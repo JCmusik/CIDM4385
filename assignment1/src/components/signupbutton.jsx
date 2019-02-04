@@ -4,11 +4,9 @@ class SignupButton extends Component {
   state = {};
   render() {
     return (
-      <a href="#">
-        <button id="signup" class="btn btn-secondary m-2">
-          Signup
-        </button>
-      </a>
+      <button id="signup" href="#" className="btn btn-secondary m-2">
+        Signup
+      </button>
     );
   }
 }

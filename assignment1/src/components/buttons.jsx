@@ -6,11 +6,11 @@ class Buttons extends Component {
   state = {};
   render() {
     return (
-      <div class="d-flex-column">
-        <div class="d-flex justify-content-center">
+      <div className="d-flex-column">
+        <div className="d-flex justify-content-center">
           <LoginButton />
         </div>
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <SignupButton />
         </div>
       </div>
