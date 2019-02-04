@@ -4,9 +4,11 @@ class LoginButton extends Component {
   state = {};
   render() {
     return (
-      <button id="login" class="btn btn-secondary m-2">
-        Login
-      </button>
+      <a href="#">
+        <button id="login" class="btn btn-secondary m-2">
+          Login
+        </button>
+      </a>
     );
   }
 }
