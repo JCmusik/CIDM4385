@@ -24,6 +24,14 @@ class SignupForm extends Component {
                 <option>American Express</option>
               </select>
             </div>
+            <div className="form-group">
+              <input
+                type="submit"
+                className="form-control"
+                id="signup"
+                value="signup"
+              />
+            </div>
           </form>
         </div>
       </div>

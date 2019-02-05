@@ -7,6 +7,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
+import Welcome from "./components/welcome/welcome";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
+            <Route path="/welcome" component={Welcome} />
           </div>
           <Footer />
         </div>
