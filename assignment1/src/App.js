@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
 import Welcome from "./components/welcome/welcome";
+import Confirmation from "./components/confirmation/confirmation";
+import Pay from "./components/pay/pay";
 
 class App extends Component {
   render() {
@@ -29,6 +31,8 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/welcome" component={Welcome} />
+            <Route path="/confirmation" component={Confirmation} />
+            <Route path="/pay" component={Pay} />
           </div>
           <Footer />
         </div>

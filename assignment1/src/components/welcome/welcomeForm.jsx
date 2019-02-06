@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import SelectButton from "../selectbutton";
 
 class WelcomeForm extends Component {
   state = {};
@@ -22,6 +24,11 @@ class WelcomeForm extends Component {
               <option>Medium</option>
               <option>Large</option>
             </select>
+          </div>
+          <div className="d-flex-column">
+            <Link to="/pay">
+              <SelectButton />
+            </Link>
           </div>
         </form>
       </div>

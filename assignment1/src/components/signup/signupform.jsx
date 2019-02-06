@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import LoginButton from "../loginbutton";
+import { Link } from "react-router-dom";
 
 class SignupForm extends Component {
   state = {};
@@ -25,14 +27,21 @@ class SignupForm extends Component {
               </select>
             </div>
             <div className="form-group">
-              <input
-                type="submit"
-                className="form-control"
-                id="signup"
-                value="signup"
-              />
+              <Link to="/welcome">
+                <input
+                  type="submit"
+                  className="form-control"
+                  id="signup"
+                  value="signup"
+                />
+              </Link>
             </div>
           </form>
+          <div className="d-flex justify-content-center">
+            <Link to="/login">
+              <LoginButton />
+            </Link>
+          </div>
         </div>
       </div>
     );

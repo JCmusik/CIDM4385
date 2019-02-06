@@ -17,13 +17,6 @@ class Welcome extends Component {
             <WelcomeForm />
           </div>
         </div>
-        <div className="d-flex-column">
-          <div className="d-flex justify-content-center">
-            <button id="select" className="btn btn-secondary m-2">
-              Select
-            </button>
-          </div>
-        </div>
       </React.Fragment>
     );
   }
