@@ -7,9 +7,11 @@ class PaySelectButton extends Component {
     return (
       <React.Fragment>
         <Link to="/confirmation">
-          <button id="select" className="btn btn-secondary m-2">
-            Select
-          </button>
+          <div className="d-flex justify-content-center">
+            <button id="select" className="btn btn-secondary m-2">
+              Select
+            </button>
+          </div>
         </Link>
       </React.Fragment>
     );

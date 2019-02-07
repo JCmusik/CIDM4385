@@ -5,17 +5,17 @@ class Confirm extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="d-flex justify-content-center">
-          <h4>Delivery Cofirmation from</h4>
+        <div className="d-flex justify-content-center bg-secondary text-white">
+          <h5>Delivery Cofirmation from</h5>
         </div>
-        <div className="d-flex justify-content-center">
-          <h4>Domino's Pizza</h4>
+        <div className="d-flex justify-content-center bg-secondary text-white">
+          <h5>Domino's Pizza</h5>
         </div>
         <div className="d-flex-column bg-secondary text-white">
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center bg-secondary text-white">
             <h5>Thank you [User Email]!</h5>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center bg-secondary text-white">
             <h5>for your order</h5>
           </div>
         </div>

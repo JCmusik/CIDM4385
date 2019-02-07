@@ -6,8 +6,8 @@ class SignupForm extends Component {
   state = {};
   render() {
     return (
-      <div className="container">
-        <div className="content p-4">
+      <React.Fragment>
+        <div className="d-flex justify-content-center">
           <form action="" className="bg-secondary text-white p-2">
             <div className="form-group">
               <label for="email">Email address:</label>
@@ -37,13 +37,13 @@ class SignupForm extends Component {
               </Link>
             </div>
           </form>
-          <div className="d-flex justify-content-center">
-            <Link to="/login">
-              <LoginButton />
-            </Link>
-          </div>
         </div>
-      </div>
+        <div className="d-flex justify-content-center">
+          <Link to="/login">
+            <LoginButton />
+          </Link>
+        </div>
+      </React.Fragment>
     );
   }
 }

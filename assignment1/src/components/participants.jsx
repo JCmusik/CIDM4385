@@ -8,11 +8,15 @@ class Participants extends Component {
   state = {};
   render() {
     return (
-      <div class="content p-4 text-center">
-        <img src={Dominos} alt="dominos" className="rounded p-1" />
-        <img src={PapaJohns} alt="papa johns" className="rounded p-1" />
-        <img src={PizzaHut} alt="pizza hut" className="rounded p-1" />
-        <img src={PizzaPlanet} alt="pizza hut" className="rounded p-1" />
+      <div class="d-flex-row">
+      <div class="d-flex justify-content-center">
+          <img src={Dominos} alt="dominos" className="rounded p-1" />
+          <img src={PapaJohns} alt="papa johns" className="rounded p-1" />
+      </div>
+      <div class="d-flex justify-content-center">
+          <img src={PizzaHut} alt="pizza hut" className="rounded p-1" />
+          <img src={PizzaPlanet} alt="pizza hut" className="rounded p-1" />
+      </div>
       </div>
     );
   }

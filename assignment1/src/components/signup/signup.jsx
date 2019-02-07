@@ -5,9 +5,9 @@ class Signup extends Component {
   state = {};
   render() {
     return (
-      <React.Fragment>
+      <div className="d-flex-row">
         <SignupForm />
-      </React.Fragment>
+      </div>
     );
   }
 }

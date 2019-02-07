@@ -7,10 +7,8 @@ class Confirmation extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="content p-4">
-          <div className="d-flex-column bg-secondary text-white">
-            <Confirm />
-          </div>
+        <div className="wrap">
+          <Confirm />
           <LogoutButton />
         </div>
       </React.Fragment>

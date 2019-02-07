@@ -6,8 +6,8 @@ class LoginForm extends Component {
   state = {};
   render() {
     return (
-      <div className="container">
-        <div className="content p-4">
+      <div class="d-flex-row">
+        <div class="d-flex justify-content-center">
           <form action="" className="bg-secondary text-white p-2">
             <div className="form-group">
               <label for="email">Email address:</label>
@@ -28,11 +28,11 @@ class LoginForm extends Component {
               </Link>
             </div>
           </form>
-          <div className="d-flex justify-content-center">
-            <Link to="/login">
-              <SignupButton />
-            </Link>
-          </div>
+        </div>
+        <div className="d-flex justify-content-center">
+          <Link to="/login">
+            <SignupButton />
+          </Link>
         </div>
       </div>
     );
