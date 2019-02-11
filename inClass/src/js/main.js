@@ -1,5 +1,4 @@
-import ReactDOM from "react-dom";
+let root = document.getElementById("root");
+let content = React.createElement("h1", {}, "Hello World");
 
-const root = document.getElementById("root");
-
-ReactDOM.render("h1", {}, "Hello World", root);
+ReactDOM.render(content, root);
