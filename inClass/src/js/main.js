@@ -1,11 +1,11 @@
 let root = document.getElementById("root");
 
-let content = React.createElement(
-  "ul",
-  {},
-  React.createElement("li", {}, "First Item"),
-  React.createElement("li", {}, "Second Item")
-);
+// let content = React.createElement(
+//   "ul",
+//   {},
+//   React.createElement("li", {}, "First Item"),
+//   React.createElement("li", {}, "Second Item")
+// );
 
 let jsxcontent = (
   <ul>
