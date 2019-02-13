@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import SignupForm from "./signupform";
 
 class Signup extends Component {
-  state = {};
+  state = {
+    email: "",
+    password: "",
+    payment: ""
+  };
   render() {
     return (
       <div className="d-flex-row">
