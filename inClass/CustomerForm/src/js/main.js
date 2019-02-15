@@ -1,23 +1,7 @@
 let root = document.getElementById("root");
 
-const car = {
-  make: "Ford",
-  motor: {
-    cylinders: "4",
-    displacement: "1.8 liter",
-    horsepower: 350
-  }
-};
-// let content = React.createElement(
-//   "ul",
-//   {},
-//   React.createElement("li", {}, "First Item"),
-//   React.createElement("li", {}, "Second Item")
-// );
-const thingy = React.createElement("div", { className: 'bg-dark text-white m-4 p-4' }, "Stuff that goes in the paragraph");
-
 const App = () => {
-  return React.createElement('div', { className: "container bg-dark text-white p-3", style: { width: 270 } },
+  return React.createElement('div', { className: "bg-primary text-white p-4 border rounded border-dark", style: { margin: 'auto', marginTop: 50, width: 300, height: 200 } },
     React.createElement(Form, {}
     )
   )
@@ -32,17 +16,15 @@ const Form = () => {
 };
 
 const Email = () => {
-  return React.createElement('div', { className: 'input-group', }, React.createElement("input", { className: 'm-1 p-2', placeholder: 'Email' }));
+  return React.createElement("input", { className: 'form-control-lg input-group text-center border border-dark', placeholder: 'Email' });
 };
 
 const ZipCode = () => {
-  return React.createElement('div', { className: 'input-group' }, React.createElement("input", { className: 'm-1 p-2', placeholder: 'Zip Code' }))
+  return React.createElement("input", { className: ' form-control-lg input-group text-center border border-dark', placeholder: 'Zipcode', style: { marginTop: 5, marginBottom: 5 } })
 };
 
 const Submit = () => {
-  return React.createElement("button", { className: 'btn btn-secondary btn-sm m-1' }, "Submit")
+  return React.createElement("button", { className: 'btn border-dark', style: { float: 'right' } }, "Submit")
 };
-
-
 
 ReactDOM.render(React.createElement(App), root);
