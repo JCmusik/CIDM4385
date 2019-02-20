@@ -1,8 +1,8 @@
-const Submit = () => {
+const Submit = (props) => {
     return React.createElement("button", {
         className: 'btn border-dark',
         style: {
             float: 'right'
         }
-    }, "Submit")
+    }, props.value)
 };

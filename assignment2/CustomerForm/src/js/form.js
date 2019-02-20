@@ -1,14 +1,19 @@
-const Form = (props) => {
+const Form = () => {
+    state = {
+        email: '',
+        zipcode: ''
+    }
     return React.createElement('form', {},
         [
             React.createElement(
                 'label', {
                     key: 0,
-                    htmlFor: 'Email Address'
+                    htmlFor: 'EmailAddress',
                 },
                 React.createElement(Email, {
                     key: 1,
-                    id: 'Email Address'
+                    id: 'EmailAddress',
+                    emailaddress: 'Email'
                 }
                 )
             )
@@ -20,7 +25,8 @@ const Form = (props) => {
             },
                 React.createElement(ZipCode, {
                     key: 3,
-                    id: 'Zip Code',
+                    id: 'ZipCode',
+                    zipcode: 'Zipcode'
                 }),
             ),
         ],
@@ -31,7 +37,8 @@ const Form = (props) => {
             },
                 React.createElement(Submit, {
                     key: 4,
-                    id: 'Submit'
+                    id: 'Submit',
+                    value: 'Submit'
                 }),
             )
         ]
