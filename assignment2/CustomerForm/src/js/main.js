@@ -7,24 +7,4 @@ const App = () => {
   )
 };
 
-const Form = () => {
-  return React.createElement('form', {}, [
-    React.createElement(Email, { key: 1 }),
-    React.createElement(ZipCode, { key: 2 }),
-    React.createElement(Submit, { key: 3 })
-  ])
-};
-
-const Email = () => {
-  return React.createElement("input", { className: 'form-control-lg input-group text-center border border-dark', placeholder: 'Email' });
-};
-
-const ZipCode = () => {
-  return React.createElement("input", { className: ' form-control-lg input-group text-center border border-dark', placeholder: 'Zipcode', style: { marginTop: 5, marginBottom: 5 } })
-};
-
-const Submit = () => {
-  return React.createElement("button", { className: 'btn border-dark', style: { float: 'right' } }, "Submit")
-};
-
 ReactDOM.render(React.createElement(App), root);
