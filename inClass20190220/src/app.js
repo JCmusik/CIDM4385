@@ -4,7 +4,11 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Form />
-            </div>);
+                <div id="results">
+                    <Results />
+                </div>
+            </div>
+        );
     }
 }
 

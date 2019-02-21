@@ -5,7 +5,7 @@ class Form extends React.Component {
     }
     render() {
         return (
-            <form className="form bg-dark text-white p-5 m-4">
+            <form className="form bg-dark text-white p-5">
                 <Email />
                 <Password />
                 <Submit />
