@@ -47,10 +47,14 @@ class App extends React.Component {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+    }
+
     render() {
         return (
             <div className="container">
-                <Form onChange={this.handleUserInput} log={this.state.formErrors} submit={this.handleSubmit} disabled={!this.state.formValid} />
+                <Form onSumbit={this.handleSubmit} onChange={this.handleUserInput} log={this.state.formErrors} onSubmit={this.handleSubmit} disabled={!this.state.formValid} />
             </div>
         );
     }
