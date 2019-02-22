@@ -2,8 +2,10 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            customer: {
+                email: '',
+                password: '',
+            },
             formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
@@ -48,13 +50,18 @@ class App extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(e.target.name)
+        this.setState = () => {
+            return { [name]: value }
+        }
     }
 
     render() {
         return (
             <div className="container">
-                <Form onSumbit={this.handleSubmit} onChange={this.handleUserInput} log={this.state.formErrors} onSubmit={this.handleSubmit} disabled={!this.state.formValid} />
+                <Form value={this.state.customer} onSubmit={this.handleSubmit} onChange={this.handleUserInput} log={this.state.formErrors} disabled={!this.state.formValid} />
             </div>
         );
     }
