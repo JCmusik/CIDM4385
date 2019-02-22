@@ -2,9 +2,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            customer_email: '',
-            customer_password: '',
-            formErrors: { customer_email: '', customer_password: '' },
+            email: '',
+            password: '',
+            formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
             formValid: false
@@ -12,7 +12,6 @@ class App extends React.Component {
 
     }
     handleUserInput = (e) => {
-
         const name = e.target.name;
         const value = e.target.value;
         return this.setState({ [name]: value },
@@ -25,13 +24,13 @@ class App extends React.Component {
         let passwordValid = this.state.passwordValid;
 
         switch (fieldName) {
-            case 'customer_email':
+            case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.customer_email = emailValid ? '' : ' is invalid';
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                 break;
-            case 'customer_password':
+            case 'password':
                 passwordValid = value.length >= 6;
-                fieldValidationErrors.customer_password = passwordValid ? '' : ' is too short';
+                fieldValidationErrors.password = passwordValid ? '' : ' is too short';
                 break;
             default:
                 break;
@@ -43,38 +42,29 @@ class App extends React.Component {
         }, this.validateForm);
     }
 
-    errorClass(error) {
-        return (error.length === 0 ? '' : 'has-error');
-    }
+    // errorClass(error) {
+    //     return (error.length === 0 ? '' : 'has-error');
+    // }
 
     validateForm() {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
     }
 
-    handleSubmit() {
-
+    handleCopy() {
+        onsole.log('log')
     }
 
     render() {
         return (
-            <div className="container">
-                <Form formErrors={this.state.formErrors} onChange={this.handleUserInput} submit={this.handleSubmit} disabled={!this.state.formValid} />
-            </div>
+            <React.Fragment>
+                <div className="container">
+                    <Form onChange={this.handleUserInput} submit={this.handleSubmit} disabled={!this.state.formValid} />
+                </div>
+                <Logging log={this.state.email} />
+                <Logging log={this.state.password} />
+            </React.Fragment>
         );
     }
-
 }
-const FormErrors = ({ formErrors }) =>
-    <div className='formErrors'>
-        {Object.keys(formErrors).map((fieldName, i) => {
-            if (formErrors[fieldName].length > 0) {
-                return (
-                    <p key={i}>{fieldName} {formErrors[fieldName]}</p>
-                )
-            } else {
-                return '';
-            }
-        })}
-    </div>
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -3,7 +3,7 @@ class Password extends React.Component {
         return (
             <div className="form-group">
                 <label htmlFor="Password">Password</label>
-                <input onChange={this.props.handleChange} type="password" className="form-control" name="customer_password" placeholder="password" />
+                <input onChange={this.props.handleChange} type="password" className="form-control" name="password" placeholder="password" />
             </div>
         );
     }
