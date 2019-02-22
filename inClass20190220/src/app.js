@@ -50,10 +50,6 @@ class App extends React.Component {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
     }
 
-    handleCopy() {
-        onsole.log('log')
-    }
-
     render() {
         return (
             <React.Fragment>
