@@ -1,10 +1,9 @@
 class Password extends React.Component {
-    state = {}
     render() {
         return (
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+            <div className="form-group">
+                <label htmlFor="Password">Password</label>
+                <input onChange={this.props.handleChange} type="password" className="form-control" name="customer_password" placeholder="password" />
             </div>
         );
     }

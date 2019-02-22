@@ -1,10 +1,10 @@
 class Email extends React.Component {
-    state = {}
     render() {
         return (
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <div className={`form-group
+            ${this.props.formErrors}`}>
+                <label htmlFor="Email">Email address</label>
+                <input type="email" onChange={this.props.handleChange} className="form-control" name="customer_email" aria-describedby="emailHelp" placeholder="Email" />
             </div>
 
         );

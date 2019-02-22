@@ -1,8 +1,7 @@
 class Submit extends React.Component {
-    state = {}
     render() {
         return (
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" disabled={this.props.disabled} onClick={this.props.submit} className="btn btn-primary">Submit</button>
         );
     }
 }
