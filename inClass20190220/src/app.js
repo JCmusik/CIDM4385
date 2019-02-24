@@ -2,14 +2,13 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            customer: {
-                email: '',
-                password: '',
-            },
+            email: '',
+            password: '',
             formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
-            formValid: false
+            formValid: false,
+            formresults: ''
         }
 
     }
@@ -18,7 +17,9 @@ class App extends React.Component {
         const value = e.target.value;
         return this.setState({ [name]: value },
             () => { this.validateField(name, value) });
+
     }
+
     validateField(fieldName, value) {
 
         let fieldValidationErrors = this.state.formErrors;
@@ -49,19 +50,17 @@ class App extends React.Component {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
     }
 
-    handleSubmit(e) {
-        const name = e.target.name;
-        const value = e.target.value;
-        console.log(e.target.name)
-        this.setState = () => {
-            return { [name]: value }
-        }
+    handleClick = (e) => {
+        e.preventDefault();
+        const formresults = "Email: " + this.state.email;
+        this.setState({ formresults: formresults });
     }
 
     render() {
         return (
             <div className="container">
-                <Form value={this.state.customer} onSubmit={this.handleSubmit} onChange={this.handleUserInput} log={this.state.formErrors} disabled={!this.state.formValid} />
+                <Form value={this.state} onClick={this.handleClick} onChange={this.handleUserInput} log={this.state.formErrors} disabled={!this.state.formValid} />
+                <h1>{this.state.formresults}</h1>
             </div>
         );
     }
