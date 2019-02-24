@@ -28,8 +28,22 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC8L3mJWRx6hc7b8S_CsK6AZwCn3VJK-qc",
+            authDomain: "pizzabandit-ed948.firebaseapp.com",
+            databaseURL: "https://pizzabandit-ed948.firebaseio.com",
+            projectId: "pizzabandit-ed948",
+            storageBucket: "pizzabandit-ed948.appspot.com",
+            messagingSenderId: "944685785707"
+        };
+        firebase.initializeApp(config);
+    </script>
     <!-- Custom JS -->
-    <script type="text/babel" src="src/js/app.js"></script>
+    <script type="text/babel" src="src/app.js"></script>
 
 </body>
 
