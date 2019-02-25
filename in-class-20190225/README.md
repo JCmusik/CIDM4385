@@ -7,8 +7,9 @@
 * Check that you have node and npm installed
 * Create a new directory to place today's work
 * run: npx create-react-app in-class-20190225
+
 * **Import other items**
-    * cd pizza-bandit
+    * cd in-class-20190225
     * npm install --save bootstrap
     * npm install --save jquery
     * npm install --save popper.js
