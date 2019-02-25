@@ -1,17 +1,4 @@
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            formErrors: { email: '', password: '' },
-            emailValid: false,
-            passwordValid: false,
-            formValid: false,
-            formresults: ''
-        }
-
-    }
     handleUserInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -19,17 +6,27 @@ class App extends React.Component {
             () => { this.validateField(name, value) });
 
     }
+    state = {
+        email: '',
+        password: '',
+        formErrors: { email: '', password: '' },
+        emailValid: false,
+        passwordValid: false,
+        formValid: false,
+        formresults: ''
+    }
 
     validateField(fieldName, value) {
 
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let emailRegex = new RegExp(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         let mediumRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
         switch (fieldName) {
             case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                emailValid = value.match(emailRegex);
                 fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                 break;
             case 'password':
