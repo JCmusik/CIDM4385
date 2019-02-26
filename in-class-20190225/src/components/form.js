@@ -5,16 +5,15 @@ import Password from '../components/password';
 
 
 class Form extends Component {
-    state = {}
     render() {
         return (
             <div className="container">
-                <div className="form-group bg-dark rounded p-4">
+                <div className="text-center form-group bg-dark rounded p-4">
                     <form>
-                        <Email />
-                        <Password />
-                        <Submit />
+                        <Email log={this.props.log} onChange={this.props.onChange} />
+                        <Password log={this.props.log} onChange={this.props.onChange} />
                     </form>
+                    <Submit onClick={this.props.onClick} />
                 </div>
             </div >
         );

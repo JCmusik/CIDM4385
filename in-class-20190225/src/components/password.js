@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Logger from './logger';
 
 class Password extends Component {
-    state = {}
     render() {
         return (
             <div className="form-input m-2">
-                <input type="password" placeholder="Password" />
+                <p><Logger log={this.props.log.password} /></p>
+                <input onChange={(e) => this.props.onChange(e)} name="password" type="password" placeholder="Password" />
             </div>
         );
     }
