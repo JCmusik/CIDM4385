@@ -6,7 +6,7 @@ class Password extends Component {
         return (
             <div className="form-input m-2">
                 <p><Logger log={this.props.log.password} /></p>
-                <input onChange={(e) => this.props.onChange(e)} name="password" type="password" placeholder="Password" />
+                <input onChange={(e) => this.props.onChange(e)} name="password" type="password" className="form-control" placeholder="Password" />
             </div>
         );
     }

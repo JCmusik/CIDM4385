@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from './components/form';
+import Map from './components/map/map';
+import mapboxgl from 'mapbox-gl';
 
 class App extends Component {
   state = {
@@ -57,6 +59,17 @@ class App extends Component {
     this.setState({ formresults: formresults });
   }
 
+  showMap() {
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-74.50, 40],
+      zoom: 9
+    });
+
+    return map;
+  }
+
   render() {
     return (
       <div className="App">
@@ -64,6 +77,7 @@ class App extends Component {
           <h1><Form log={this.state.formErrors} onChange={this.handleUserInput} onClick={this.handleClick} /></h1>
         </div>
         <h3 className="container" id="results">{this.state.formresults}</h3>
+        <div id="map"><Map /></div>
       </div>
     );
   }
