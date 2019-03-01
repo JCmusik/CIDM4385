@@ -29,12 +29,10 @@ class App extends Component {
   componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude
-        const lng = position.coords.longitude
         this.setState(() => {
           return {
-            lat,
-            lng: lng
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
           }
         }
         );
