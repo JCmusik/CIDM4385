@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Logger extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                <span className="log text-danger">{this.props.log}</span>
-            </React.Fragment>
-        );
-    }
+const Logger = (props) => {
+    return (
+        <React.Fragment>
+            <span className="log text-danger">{props.log}</span>
+        </React.Fragment>
+    );
 }
 
 export default Logger;

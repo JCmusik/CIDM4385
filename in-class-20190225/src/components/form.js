@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Submit from '../components/submit'
 import Email from '../components/email';
 import Password from '../components/password';
 
-
-class Form extends Component {
-    render() {
-        return (
-            <form className="container form-group bg-dark rounded p-4">
-                <Email log={this.props.log} onChange={this.props.onChange} />
-                <Password log={this.props.log} onChange={this.props.onChange} />
-                <Submit onClick={this.props.onClick} />
-            </form >
-        );
-    }
+const Form = (props) => {
+    return (
+        <form className="container form-group bg-dark rounded p-4">
+            <Email log={props.log} onChange={props.onChange} />
+            <Password log={props.log} onChange={props.onChange} />
+            <Submit onClick={props.onClick} />
+        </form >
+    )
 }
 
 export default Form;
