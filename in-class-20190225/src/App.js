@@ -6,8 +6,7 @@ import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiamNtdXNpayIsImEiOiJjanNvNWFuaWswajkzNDVwOXQyejQwbGQzIn0.xxNLUG46Y-7QspUsLShJrA"
 });
-// lng: -101.831299,
-//     lat: 35.191425,
+
 class App extends Component {
   state = {
     email: '',
@@ -22,17 +21,7 @@ class App extends Component {
     mapstyle: 'light',
     geolocerror: ''
   }
-  // if(navigator.geolocation){
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     //set state properties for lat and long
-  //     this.setState( () => {
-  //         return {
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude
-  //         }
-  //       }
-  //     );
-  //   });
+
   componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -49,8 +38,6 @@ class App extends Component {
       this.setState({ geolocerror });
     }
   }
-
-
 
   handleUserInput = (e) => {
     const name = e.target.name;
