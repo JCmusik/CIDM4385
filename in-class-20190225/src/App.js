@@ -1,19 +1,53 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from './components/form';
-import Map from './components/map/map';
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiamNtdXNpayIsImEiOiJjanNvNWFuaWswajkzNDVwOXQyejQwbGQzIn0.xxNLUG46Y-7QspUsLShJrA"
+});
 
 class App extends Component {
-  state = {
-    email: '',
-    password: '',
-    formErrors: { email: '', password: '' },
-    emailValid: false,
-    passwordValid: false,
-    formValid: false,
-    formresults: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      email: '',
+      password: '',
+      formErrors: { email: '', password: '' },
+      emailValid: false,
+      passwordValid: false,
+      formValid: false,
+      formresults: '',
+      lng: -101.831299,
+      lat: 35.191425,
+      mapstyle: 'light',
+      geolocerror: ''
+    }
   }
+
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude
+        const lng = position.coords.longitude
+        console.log(lat, lng)
+        this.setState(() => {
+          return {
+            lat,
+            lng: lng
+          }
+        }
+        );
+        console.log(this.state.lat);
+      });
+    } else {
+      const geolocerror = '[blocked] Access to geolocation was blocked over insecure connection to http://localhost:3000';
+      this.setState({ geolocerror });
+    }
+  }
+
+
 
   handleUserInput = (e) => {
     const name = e.target.name;
@@ -21,7 +55,7 @@ class App extends Component {
     return this.setState({ [name]: value },
       () => { this.validateField(name, value) });
 
-  }
+  };
   validateField(fieldName, value) {
 
     let fieldValidationErrors = this.state.formErrors;
@@ -59,13 +93,30 @@ class App extends Component {
     this.setState({ formresults: formresults });
   }
   render() {
+    const { lng, lat, mapstyle, geolocerror } = this.state;
     return (
       <div className="App">
         <div className="form-group">
           <Form log={this.state.formErrors} onChange={this.handleUserInput} onClick={this.handleClick} />
         </div>
         <h3 className="container" id="results">{this.state.formresults}</h3>
-        <div id="map"><Map /></div>
+        <div className="container map">
+          <p className="bg-danger">{geolocerror}</p>
+          <Map
+            style={`mapbox://styles/mapbox/${mapstyle}-v9`}
+            center={[lng, lat]}
+            containerStyle={{
+              height: "400px",
+              width: "100%"
+            }}>
+            <Layer type="symbol"
+              id="marker"
+              layout={{ "icon-image": "marker-15" }}
+            >
+              <Feature coordinates={[lng, lat]} />
+            </Layer>
+          </Map>
+        </div>
       </div >
     );
   }
