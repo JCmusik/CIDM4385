@@ -31,7 +31,6 @@ class App extends Component {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude
         const lng = position.coords.longitude
-        console.log(lat, lng)
         this.setState(() => {
           return {
             lat,
@@ -39,7 +38,6 @@ class App extends Component {
           }
         }
         );
-        console.log(this.state.lat);
       });
     } else {
       const geolocerror = '[blocked] Access to geolocation was blocked over insecure connection to http://localhost:3000';
