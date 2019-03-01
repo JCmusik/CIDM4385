@@ -6,26 +6,33 @@ import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiamNtdXNpayIsImEiOiJjanNvNWFuaWswajkzNDVwOXQyejQwbGQzIn0.xxNLUG46Y-7QspUsLShJrA"
 });
-
+// lng: -101.831299,
+//     lat: 35.191425,
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      email: '',
-      password: '',
-      formErrors: { email: '', password: '' },
-      emailValid: false,
-      passwordValid: false,
-      formValid: false,
-      formresults: '',
-      lng: -101.831299,
-      lat: 35.191425,
-      mapstyle: 'light',
-      geolocerror: ''
-    }
+  state = {
+    email: '',
+    password: '',
+    formErrors: { email: '', password: '' },
+    emailValid: false,
+    passwordValid: false,
+    formValid: false,
+    formresults: '',
+    lng: '',
+    lat: '',
+    mapstyle: 'light',
+    geolocerror: ''
   }
-
+  // if(navigator.geolocation){
+  //   navigator.geolocation.getCurrentPosition(position => {
+  //     //set state properties for lat and long
+  //     this.setState( () => {
+  //         return {
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude
+  //         }
+  //       }
+  //     );
+  //   });
   componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
