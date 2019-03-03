@@ -1,0 +1,26 @@
+.header {
+    position: absolute;
+    top: 0px;
+    height: 100px;
+    width: 100%;
+    font-size: 1.7em;
+    line-height: 100px;
+    text-transform: uppercase;
+  }
+
+  .home {
+    position: absolute;
+    top: 8em;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+  }
+  
+  .footer a {
+    color: #fff;
+    text-decoration: none;
+  }
