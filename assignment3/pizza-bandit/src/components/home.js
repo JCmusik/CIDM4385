@@ -4,8 +4,8 @@ class Home extends Component {
     state = {}
     render() {
         return (
-            <div className="container home text-white">
-                <h1>Home Page</h1>
+            <div className="container wrapper text-white rounded bg-secondary">
+
             </div>);
     }
 }

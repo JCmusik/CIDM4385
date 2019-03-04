@@ -8,19 +8,22 @@
     text-transform: uppercase;
   }
 
-  .home {
-    position: absolute;
+  body {
+    background-image: url('img/pizza-bg.jpg');
+    background-repeat: repeat-y;
+    background-size: 100%;
+  }
+
+  .wrapper {
+    position: relative;
     top: 8em;
+    min-height: 40rem;
+    opacity: .9;
   }
 
   .footer {
     position: absolute;
     bottom: 0px;
-    height: 30px;
+    height: 40px;
     width: 100%;
-  }
-  
-  .footer a {
-    color: #fff;
-    text-decoration: none;
   }
