@@ -21,6 +21,10 @@
     opacity: .7;
   }
 
+  .card {
+    color: #000;
+  }
+
   .footer {
     position: absolute;
     bottom: 0px;

@@ -6,11 +6,13 @@ import Footer from './components/footer';
 
 
 class App extends Component {
+  state = {
+  }
   render() {
     return (
       <div className="App">
         <Header />
-        <Home />
+        <Home card={this.state.card} />
         <Footer />
       </div>
     );
