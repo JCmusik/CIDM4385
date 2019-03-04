@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Card = () => {
+const Card = (props) => {
+    const { title, image } = props;
     return (
-        <div class="card-body">
-            <h4 class="card-title">{title}</h4>
-            <p class="card-text">{text}</p>
+        <div class="card bg-secondary">
+            <div class="card-body text-center">
+                <div className="card-title"><img className="img-thumbnail rounded" src={image} alt={title} /></div>
+                <h4 className="card-title bg">{title}</h4>
+                <button className="btn btn-primary">Select</button>
+            </div>
         </div>
     )
 }

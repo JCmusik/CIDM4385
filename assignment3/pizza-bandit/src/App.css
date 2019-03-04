@@ -16,13 +16,8 @@
 
   .wrapper {
     position: relative;
-    top: 8rem;
+    top: 7rem;
     min-height: 40rem;
-    opacity: .7;
-  }
-
-  .card {
-    color: #000;
   }
 
   .footer {
