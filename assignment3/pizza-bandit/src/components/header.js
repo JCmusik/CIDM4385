@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = () => {
+const Header = () => {
     return (
         <div className="header bg-secondary text-white text-center">
             Pizza Bandit
@@ -8,4 +8,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default Header;
