@@ -7,7 +7,7 @@ import Supreme from '../img/supreme.jpg';
 
 const Selection = () => {
     return (
-        <div class="card-columns">
+        <div className="card-columns">
             <Card title="Cheese" image={Cheese} />
             <Card title="Pepperoni" image={Pepp} />
             <Card title="Supreme" image={Supreme} />
