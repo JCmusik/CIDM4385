@@ -67,7 +67,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Home card={this.state.card} />
+        <Home />
         <Footer />
       </div>
     );
