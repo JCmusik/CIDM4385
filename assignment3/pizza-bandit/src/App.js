@@ -6,19 +6,17 @@ import Footer from './components/footer';
 
 class App extends Component {
   state = {
-    customer: {
-      email: '',
-      password: '',
-      formErrors: { email: '', password: '' },
-      emailValid: false,
-      passwordValid: false,
-      formValid: false,
-      formresults: '',
-      lng: '',
-      lat: '',
-      mapstyle: 'light',
-      geolocerror: ''
-    }
+    email: '',
+    password: '',
+    formErrors: { email: '', password: '' },
+    emailValid: false,
+    passwordValid: false,
+    formValid: false,
+    formresults: '',
+    lng: '',
+    lat: '',
+    mapstyle: 'light',
+    geolocerror: ''
   }
   handleUserInput = (e) => {
     const name = e.target.name;
@@ -60,14 +58,16 @@ class App extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    const formresults = "Email: " + this.state.email;
+    const formresults = "Email: " + this.state.email.toLowerCase();
     this.setState({ formresults: formresults });
   }
   render() {
     return (
       <div className="App">
         <Header />
-        <Home />
+        <Home onChange={this.handleUserInput}
+          onClick={this.handleClick}
+          log={this.state.formErrors} />
         <Footer />
       </div>
     );

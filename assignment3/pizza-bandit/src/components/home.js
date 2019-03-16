@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import Selection from './selection';
+import React from 'react'
+import SignInForm from '../components/signin/signinForm';
 
-class Home extends Component {
-    render() {
-        return (
-            <div className="wrapper text-white p-4">
-                <Selection />
-            </div>);
-    }
+const Home = (props) => {
+    return (
+        <div className="wrapper text-white p-4">
+            {/* <Selection /> */}
+            <SignInForm onChange={props.onChange}
+                onClick={props.onClick}
+                log={props.log} />
+        </div>
+    )
 }
 
 export default Home;
