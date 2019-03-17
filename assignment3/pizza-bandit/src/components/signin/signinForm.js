@@ -1,15 +1,18 @@
 import React from 'react';
 import Email from '../signin/email';
 import Password from '../signin/password';
-import Submit from '../signin/submit';
+import Login from './login';
 
 const SignInForm = (props) => {
     return (
-        <form className="bg-secondary rounded p-3">
-            <Email log={props.log} onChange={props.onChange} />
-            <Password log={props.log} onChange={props.onChange} />
-            <Submit onClick={props.onClick} />
-        </form>
+        <React.Fragment>
+            <form className="bg-secondary rounded p-3">
+                <h1 className="text-center">Log in</h1>
+                <Email log={props.log} onChange={props.onChange} />
+                <Password log={props.log} onChange={props.onChange} />
+                <Login onClick={props.onClick} />
+            </form>
+        </React.Fragment>
     );
 }
 

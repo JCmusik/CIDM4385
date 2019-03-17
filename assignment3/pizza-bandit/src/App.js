@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './components/home';
+// import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
+import Mapbox from './components/map/map';
 
 class App extends Component {
   state = {
@@ -13,11 +14,12 @@ class App extends Component {
     passwordValid: false,
     formValid: false,
     formresults: '',
-    lng: '',
-    lat: '',
     mapstyle: 'light',
+    lat: '',
+    lng: '',
     geolocerror: ''
   }
+
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -62,12 +64,14 @@ class App extends Component {
     this.setState({ formresults: formresults });
   }
   render() {
+    const { formErrors } = this.state;
     return (
       <div className="App">
         <Header />
-        <Home onChange={this.handleUserInput}
+        {/* <Home onChange={this.handleUserInput}
           onClick={this.handleClick}
-          log={this.state.formErrors} />
+          log={formErrors} /> */}
+        <Mapbox state={this.state} />
         <Footer />
       </div>
     );

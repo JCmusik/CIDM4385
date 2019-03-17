@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'mapbox-gl';
+import 'react-mapbox-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'jquery/dist/jquery';

@@ -17,6 +17,10 @@
     position: relative;
     top: 7rem;
   }
+
+  .map {
+    margin-top: 8em;
+  }
   
   .footer {
     position: absolute;
