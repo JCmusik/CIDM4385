@@ -18,10 +18,10 @@
     top: 7rem;
   }
 
-  .map {
+  .map, form {
     margin-top: 8em;
   }
-  
+
   .footer {
     position: absolute;
     bottom: 0px;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Logger from '../logger';
+import Logger from './logger';
 
 const Email = (props) => {
     return (

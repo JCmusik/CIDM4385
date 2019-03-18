@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Home from './components/home';
+import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
 import Mapbox from './components/map/map';
+import SignInForm from './components/signin/signinForm';
 
 class App extends Component {
   state = {
@@ -68,10 +69,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <SignInForm onChange={this.handleUserInput}
+          onClick={this.onClick}
+          log={formErrors} />
         {/* <Home onChange={this.handleUserInput}
-          onClick={this.handleClick}
-          log={formErrors} /> */}
-        <Mapbox state={this.state} />
+        onClick={this.handleClick}
+        log={formErrors} /> */}
+        {/* <Mapbox state={this.state} /> */}
         <Footer />
       </div>
     );

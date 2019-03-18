@@ -1,13 +1,10 @@
 import React from 'react'
-import SignInForm from '../components/signin/signinForm';
+import Selection from '../components/selection';
 
 const Home = (props) => {
     return (
         <div className="wrapper text-white p-4">
-            {/* <Selection /> */}
-            <SignInForm onChange={props.onChange}
-                onClick={props.onClick}
-                log={props.log} />
+            <Selection />
         </div>
     )
 }

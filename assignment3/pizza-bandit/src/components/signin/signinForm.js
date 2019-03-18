@@ -6,7 +6,7 @@ import Login from './login';
 const SignInForm = (props) => {
     return (
         <React.Fragment>
-            <form className="bg-secondary rounded p-3">
+            <form className="container bg-secondary rounded p-3 text-white">
                 <h1 className="text-center">Log in</h1>
                 <Email log={props.log} onChange={props.onChange} />
                 <Password log={props.log} onChange={props.onChange} />
