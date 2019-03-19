@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     email: '',
     password: '',
-    userAuthenticated: true,
+    userAuthenticated: false,
     formErrors: { email: '', password: '' },
     emailValid: false,
     passwordValid: false,
@@ -20,22 +20,24 @@ class App extends Component {
     lat: '',
     lng: '',
     geolocerror: '',
-    user: {
-      uid: '',
-      userEmail: firebase.auth().currentUser ? firebase.auth().currentUser : '',
-      userAuthenticated: false
-    },
+    user: {},
+    // user: {
+    //   uid: '',
+    //   userEmail: firebase.auth().currentUser ? firebase.auth().currentUser : '',
+    //   userAuthenticated: false
+    // },
     pizza_place: '',
   }
 
   componentDidMount() {
     this.authListener();
   }
-
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
       console.log(user);
-      (user) ? this.setState({ user }) : this.setState({ user: null });
+      (user) ? this.setState({ user: { userAuthenticated: true } }) : this.setState({
+        user: ''
+      });
     })
   }
 
@@ -82,18 +84,30 @@ class App extends Component {
     const formresults = "Email: " + this.state.email.toLowerCase();
     this.setState({ formresults: formresults });
   }
+
+  handleLoginFormSubmission(e) {
+    this.handleClick(e);
+    e.preventDefault();
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        console.log(this.state.email);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
-    const { formErrors, userAuthenticated } = this.state;
+    const { formErrors, user } = this.state;
     return (
       <div className="App">
         <Header />
-        {(!userAuthenticated) ?
+        {(!user) ?
           <SignInForm
             onChange={this.handleUserInput}
-            onClick={this.onClick}
+            onClick={this.handleLoginFormSubmission}
             log={formErrors} /> :
           <Home onChange={this.handleUserInput}
-            onClick={this.handleClick}
             log={formErrors}
           />
         }
