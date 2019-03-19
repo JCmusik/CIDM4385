@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
+import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 
 class App extends Component {
@@ -18,7 +19,24 @@ class App extends Component {
     mapstyle: 'light',
     lat: '',
     lng: '',
-    geolocerror: ''
+    geolocerror: '',
+    user: {
+      uid: '',
+      userEmail: firebase.auth().currentUser ? firebase.auth().currentUser : '',
+      userAuthenticated: false
+    },
+    pizza_place: '',
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      (user) ? this.setState({ user }) : this.setState({ user: null });
+    })
   }
 
   handleUserInput = (e) => {
