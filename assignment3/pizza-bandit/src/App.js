@@ -3,13 +3,13 @@ import './App.css';
 import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
-import Mapbox from './components/map/map';
 import SignInForm from './components/signin/signinForm';
 
 class App extends Component {
   state = {
     email: '',
     password: '',
+    userAuthenticated: true,
     formErrors: { email: '', password: '' },
     emailValid: false,
     passwordValid: false,
@@ -65,17 +65,20 @@ class App extends Component {
     this.setState({ formresults: formresults });
   }
   render() {
-    const { formErrors } = this.state;
+    const { formErrors, userAuthenticated } = this.state;
     return (
       <div className="App">
         <Header />
-        <SignInForm onChange={this.handleUserInput}
-          onClick={this.onClick}
-          log={formErrors} />
-        {/* <Home onChange={this.handleUserInput}
-        onClick={this.handleClick}
-        log={formErrors} /> */}
-        {/* <Mapbox state={this.state} /> */}
+        {(!userAuthenticated) ?
+          <SignInForm
+            onChange={this.handleUserInput}
+            onClick={this.onClick}
+            log={formErrors} /> :
+          <Home onChange={this.handleUserInput}
+            onClick={this.handleClick}
+            log={formErrors}
+          />
+        }
         <Footer />
       </div>
     );
