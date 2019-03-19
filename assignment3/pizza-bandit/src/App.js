@@ -85,9 +85,8 @@ class App extends Component {
     this.setState({ formresults: formresults });
   }
 
-  handleLoginFormSubmission(e) {
+  handleLoginFormSubmission = (e) => {
     this.handleClick(e);
-    e.preventDefault();
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         console.log(this.state.email);
