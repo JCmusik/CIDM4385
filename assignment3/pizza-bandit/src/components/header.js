@@ -1,11 +1,18 @@
 import React from 'react';
 
-const Header = () => {
+const Header = (props) => {
+    const { user, logout } = props;
     return (
-        <div className="header bg-secondary text-white text-center">
-            <h1>PIZZA BANDIT</h1>
-            <span className="small">Delivery so cheap you'll think it's stealing.</span>
-        </div>
+        <React.Fragment>
+            <div className="header bg-secondary text-white text-center">
+                <div className="row">
+                    <div className="col">
+                        <h1>PIZZA BANDIT</h1>
+                    </div>
+                    {(user) ? <span className="col display-small m-1">{user.email} <button onClick={logout} className="btn btn-primary">Logout</button></span> : <span></span>}
+                </div>
+            </div>
+        </React.Fragment>
     )
 }
 

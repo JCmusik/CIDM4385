@@ -11,7 +11,7 @@ class App extends Component {
     email: '',
     password: '',
     userAuthenticated: false,
-    formErrors: { email: '', password: '' },
+    formErrors: { email: '', password: '', errors: '' },
     emailValid: false,
     passwordValid: false,
     formValid: false,
@@ -21,21 +21,16 @@ class App extends Component {
     lng: '',
     geolocerror: '',
     user: {},
-    // user: {
-    //   uid: '',
-    //   userEmail: firebase.auth().currentUser ? firebase.auth().currentUser : '',
-    //   userAuthenticated: false
-    // },
     pizza_place: '',
   }
 
   componentDidMount() {
     this.authListener();
   }
+
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      (user) ? this.setState({ user: { userAuthenticated: true } }) : this.setState({
+      (user) ? this.setState({ user: { userAuthenticated: true, email: user.email } }) : this.setState({
         user: ''
       });
     })
@@ -89,18 +84,30 @@ class App extends Component {
     this.handleClick(e);
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        console.log(this.state.email);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch((error) => { this.setErrorMessage(error) }
+
+      );
+  }
+
+  setErrorMessage(error) {
+    const errMessage = error.message;
+    console.log(errMessage);
+    this.setState({
+      formErrors: { errors: errMessage }
+    });
+  }
+
+  handleLogout() {
+    firebase.auth().signOut();
   }
 
   render() {
     const { formErrors, user } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header user={user}
+          logout={this.handleLogout} />
         {(!user) ?
           <SignInForm
             onChange={this.handleUserInput}

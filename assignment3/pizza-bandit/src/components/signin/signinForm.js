@@ -11,6 +11,7 @@ const SignInForm = (props) => {
                 <Email log={props.log} onChange={props.onChange} />
                 <Password log={props.log} onChange={props.onChange} />
                 <Login onClick={props.onClick} />
+                <span>{props.log.errors}</span>
             </form>
         </React.Fragment>
     );
