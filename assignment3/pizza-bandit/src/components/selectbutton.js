@@ -4,7 +4,8 @@ class SelectButton extends Component {
     state = {
         className: 'btn btn-primary',
         selected: false,
-        name: 'Add to Cart'
+        name: 'Add to Cart',
+        item: ''
     }
     changeButtonClass = () => {
         let selected = this.state.selected;
@@ -17,14 +18,15 @@ class SelectButton extends Component {
     }
 
     handleCardClick = (e) => {
-        e.preventDefault();
         this.setState({
             selected: !this.state.selected
-        },
-            () => { this.changeButtonClass() });
+        }, () => this.changeButtonClass());
+        this.props.onCardClick(e);
+
     }
+
     render() {
-        const { className, name } = this.state;
+        const { name, className } = this.state;
         return (
             <button className={className} onClick={this.handleCardClick}>{name}</button>
         );

@@ -21,7 +21,17 @@ class App extends Component {
     lng: '',
     geolocerror: '',
     user: {},
-    pizza_place: '',
+    orders: {
+      date: '',
+      email: '',
+      item: '',
+      price: '',
+      vendor: ''
+    },
+    cards: {
+      selected: false,
+      item: ''
+    }
   }
 
   componentDidMount() {
@@ -107,8 +117,16 @@ class App extends Component {
     // });
   }
 
+  handleCardClick = (e) => {
+    this.setState({
+      cards: {
+        selected: !this.state.cards.selected
+      }
+    });
+  }
+
   render() {
-    const { formErrors, user } = this.state;
+    const { formErrors, user, cards } = this.state;
     return (
       <div className="App">
         <Header user={user}
@@ -120,6 +138,8 @@ class App extends Component {
             log={formErrors} /> :
           <Home onChange={this.handleUserInput}
             log={formErrors}
+            cards={cards}
+            onCardClick={this.handleCardClick}
           />
         }
         <Footer />
