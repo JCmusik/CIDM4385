@@ -84,6 +84,9 @@ class App extends Component {
     this.handleClick(e);
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
+        this.setState({
+          formErrors: { errors: '' }
+        });
       })
       .catch((error) => { this.setErrorMessage(error) }
 
@@ -92,14 +95,16 @@ class App extends Component {
 
   setErrorMessage(error) {
     const errMessage = error.message;
-    console.log(errMessage);
     this.setState({
       formErrors: { errors: errMessage }
     });
   }
 
-  handleLogout() {
+  handleLogout = () => {
     firebase.auth().signOut();
+    // this.setState({
+    //   formErrors: { errors: '' }
+    // });
   }
 
   render() {
