@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
 import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
+import Mapbox from './components/map/map';
 import { CompleteOrder } from './Services/DB'
 
 /**
@@ -214,23 +216,29 @@ class App extends Component {
   render() {
     const { formErrors, user, cards } = this.state;
     return (
-      <div className="App">
-        <Header user={user}
-          logout={this.handleLogout} />
-        {(!user) ?
-          <SignInForm
-            onChange={this.handleUserInput}
-            onClick={this.handleLoginFormSubmission}
-            log={formErrors} /> :
-          <Home onChange={this.handleUserInput}
-            log={formErrors}
-            cards={cards}
-            onCardClick={this.handleSelection}
-            order={this.handleOrder}
+      <Router>
+        <div className="App">
+          <Header user={user}
+            logout={this.handleLogout} />
+          <Route exact path="/"
+            render={() =>
+              (!user) ?
+                <SignInForm
+                  onChange={this.handleUserInput}
+                  onClick={this.handleLoginFormSubmission}
+                  log={formErrors} /> :
+                <Home onChange={this.handleUserInput}
+                  log={formErrors}
+                  cards={cards}
+                  onCardClick={this.handleSelection}
+                  order={this.handleOrder}
+                />
+            }
           />
-        }
-        <Footer />
-      </div>
+          <Route path="/map" component={Mapbox} />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
