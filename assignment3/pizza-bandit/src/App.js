@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Home from './components/home';
 import Header from './components/header';
@@ -41,6 +42,11 @@ class App extends Component {
     this.authListener();
   }
 
+  /**
+   * Contacts firebase to determine if a user is logged in or not.
+   * @True Sets the state of userAuthenticated to true and email to the returned email
+   * @False Sets the state of user to an empty string  
+   */
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
       (user) ? this.setState({ user: { userAuthenticated: true, email: user.email } }) : this.setState({
@@ -49,6 +55,12 @@ class App extends Component {
     })
   }
 
+  /**
+   * When user types in an input field, store the name and value of the target element.
+   * Then set the state of the key value pair.
+   * Call `validateField()` and pass in the name/value of the target element
+   * @param {*} e - represents the `onChange` event
+   */
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -56,6 +68,12 @@ class App extends Component {
       () => { this.validateField(name, value) });
 
   };
+
+  /**
+   * Validate user input using `RegExp()` (regular expression)
+   * @param {*} fieldName - name attribute of the target element
+   * @param {*} value - value attribute of the target element
+   */
   validateField(fieldName, value) {
 
     let fieldValidationErrors = this.state.formErrors;
@@ -83,16 +101,19 @@ class App extends Component {
     }, this.validateForm);
   }
 
+  /**
+   * Sets the state of formValid for email and password
+   */
   validateForm() {
     this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
   }
 
-  handleClick = (e) => {
-    e.preventDefault();
-    const formresults = "Email: " + this.state.email.toLowerCase();
-    this.setState({ formresults: formresults });
-  }
-
+  /**
+   * When user submits the signIn form, the email and passowrd are sent to firebase for authentication.
+   * @param {*} e - represents the event of clicking the signin button on the sign in form
+   * Resets the state of error messages from state.
+   * If there is an error, `setErrorMessage(error)` is called.
+   */
   handleLoginFormSubmission = (e) => {
     this.handleClick(e);
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -101,11 +122,15 @@ class App extends Component {
           formErrors: { errors: '' }
         });
       })
-      .catch((error) => { this.setErrorMessage(error) }
-
+      .catch((error) => { this.setErrorMessage(error) },
+        console.log(error.message)
       );
   }
 
+  /**
+   * Set the error message returned from firebase to the formErrors: errors state
+   * @param {*} error 
+   */
   setErrorMessage(error) {
     const errMessage = error.message;
     this.setState({
@@ -113,10 +138,19 @@ class App extends Component {
     });
   }
 
+  /**
+   * Signs the authenticated user out.
+   */
   handleLogout = () => {
     firebase.auth().signOut();
   }
 
+  /**
+      * Appends new elements to an array.
+      * @param choice New elements of the selection Array.
+      * @param selected bool of the button clicked status.
+      * @param amt New elements of the price Array.
+      */
   handleSelection = (choice, selected, amt) => {
     this.setState({
       cards: {
@@ -126,19 +160,34 @@ class App extends Component {
     (selected) ? selection.push(choice) && price.push(amt) : selection.pop(choice) && price.pop(amt);
   }
 
+  /**
+    * Determines if the cart is empty.
+    * If true, set an error message to the state that is passed down as a prop.
+    * If false, the `placeOrder()` method is called
+    */
   handleOrder = () => {
     (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder()
   }
 
+  /**
+   * Resets the error in state to an empty string.
+   * Calls the `addItemsToOrder()` method to construct an orders object
+   * TODO: redirect to order detail page
+   */
   placeOrder() {
     this.setState({
       formErrors: { errors: '' }
     });
     const orders = this.addItemsToOrder();
-    this.setState({ orders });
     console.log('Placed order', orders);
+
+    //<Redirect to='/Details' />
   }
 
+  /**
+   * Adds Items to an order and constructs an order object
+   * @returns the orders object
+   */
   addItemsToOrder() {
     const date = new Date();
     const email = this.state.user.email;
@@ -152,23 +201,25 @@ class App extends Component {
   render() {
     const { formErrors, user, cards } = this.state;
     return (
-      <div className="App">
-        <Header user={user}
-          logout={this.handleLogout} />
-        {(!user) ?
-          <SignInForm
-            onChange={this.handleUserInput}
-            onClick={this.handleLoginFormSubmission}
-            log={formErrors} /> :
-          <Home onChange={this.handleUserInput}
-            log={formErrors}
-            cards={cards}
-            onCardClick={this.handleSelection}
-            order={this.handleOrder}
-          />
-        }
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header user={user}
+            logout={this.handleLogout} />
+          {(!user) ?
+            <SignInForm
+              onChange={this.handleUserInput}
+              onClick={this.handleLoginFormSubmission}
+              log={formErrors} /> :
+            <Home onChange={this.handleUserInput}
+              log={formErrors}
+              cards={cards}
+              onCardClick={this.handleSelection}
+              order={this.handleOrder}
+            />
+          }
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }

@@ -5,6 +5,10 @@ import Pepp from '../img/pepperoni.jpg';
 import Supreme from '../img/supreme.jpg';
 import Logger from '../components/signin/logger';
 
+let cheesePrice = 9.99;
+let pepperoniPrice = 12.99;
+let supremePrice = 14.99;
+
 const Selection = (props) => {
     const { cards, onCardClick, order, log } = props;
     return (
@@ -13,19 +17,19 @@ const Selection = (props) => {
                 <Card
                     title="Cheese"
                     image={Cheese}
-                    price="$9.99"
+                    price={cheesePrice}
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
                     title="Pepperoni"
                     image={Pepp}
-                    price="$12.99"
+                    price={pepperoniPrice}
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
                     title="Supreme"
                     image={Supreme}
-                    price="$14.99"
+                    price={supremePrice}
                     cards={cards}
                     onCardClick={onCardClick}
                 />
