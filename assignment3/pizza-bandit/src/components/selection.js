@@ -13,16 +13,19 @@ const Selection = (props) => {
                 <Card
                     title="Cheese"
                     image={Cheese}
+                    price="$9.99"
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
                     title="Pepperoni"
                     image={Pepp}
+                    price="$12.99"
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
                     title="Supreme"
                     image={Supreme}
+                    price="$14.99"
                     cards={cards}
                     onCardClick={onCardClick}
                 />

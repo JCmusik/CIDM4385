@@ -20,11 +20,12 @@ class SelectButton extends Component {
 
     handleCardClick = () => {
         const choice = this.props.title;
+        const amt = this.props.price;
         const selected = this.state.selected;
         this.setState({
             selected: !this.state.selected
         }, () => this.changeButtonClass(selected));
-        this.props.onCardClick(choice, selected);
+        this.props.onCardClick(choice, selected, amt);
 
     }
 

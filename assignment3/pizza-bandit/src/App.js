@@ -7,6 +7,7 @@ import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 
 let selection = [];
+let price = [];
 
 class App extends Component {
   state = {
@@ -27,7 +28,7 @@ class App extends Component {
       date: '',
       email: '',
       item: [],
-      price: '',
+      price: [],
       vendor: ''
     },
     cards: {
@@ -116,26 +117,38 @@ class App extends Component {
     firebase.auth().signOut();
   }
 
-  handleSelection = (choice, selected) => {
+  handleSelection = (choice, selected, amt) => {
     this.setState({
       cards: {
-        selected: selected
-      }
+        selected
+      },
     });
-    (selected) ? selection.push(choice) : selection.pop(choice);
+    (selected) ? selection.push(choice) && price.push(amt) : selection.pop(choice) && price.pop(amt);
   }
 
   handleOrder = () => {
-    (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder(selection)
+    (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder()
   }
 
   placeOrder() {
     this.setState({
       formErrors: { errors: '' }
     });
+    const orders = this.addItemsToOrder();
+    this.setState({ orders });
+    console.log('Placed order', orders);
+  }
 
-    console.log('Placed order');
-    this.setState({ orders: { item: selection } });
+  addItemsToOrder() {
+    const date = new Date();
+    const email = this.state.user.email;
+    const item = selection;
+    // change later
+    const vendor = "Pizza place";
+
+    const orders = { date, email, item, price, vendor };
+
+    return orders
   }
 
   render() {
