@@ -145,9 +145,7 @@ class App extends Component {
     const item = selection;
     // change later
     const vendor = "Pizza place";
-
     const orders = { date, email, item, price, vendor };
-
     return orders
   }
 

@@ -5,9 +5,9 @@ You've followed along with me all semester so far with the Pizza Bandit program.
 * Create a basic ReactJS app
 * Create a form that allows a user to sign up with an account
     * ~~email and password~~
-    * save this information to Firebase
+    * ~~save this information to Firebase~~
 * Create a form that allows a user to order a pizza
-    * user must be signed in
+    * ~~user must be signed in~~
     * use location services to get lat/lon
     * use a web service to get ZIP code from lat lon
     * ~~select from three pizzas - cheese, pepperoni, and supreme~~
