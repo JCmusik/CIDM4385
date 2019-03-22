@@ -6,6 +6,8 @@ import Footer from './components/footer';
 import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 
+let selection = [];
+
 class App extends Component {
   state = {
     email: '',
@@ -24,13 +26,13 @@ class App extends Component {
     orders: {
       date: '',
       email: '',
-      item: '',
+      item: [],
       price: '',
       vendor: ''
     },
     cards: {
-      selected: false,
-      item: ''
+      item: '',
+      selection: []
     }
   }
 
@@ -112,17 +114,28 @@ class App extends Component {
 
   handleLogout = () => {
     firebase.auth().signOut();
-    // this.setState({
-    //   formErrors: { errors: '' }
-    // });
   }
 
-  handleCardClick = (e) => {
+  handleSelection = (choice, selected) => {
     this.setState({
       cards: {
-        selected: !this.state.cards.selected
+        selected: selected
       }
     });
+    (selected) ? selection.push(choice) : selection.pop(choice);
+  }
+
+  handleOrder = () => {
+    (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder(selection)
+  }
+
+  placeOrder() {
+    this.setState({
+      formErrors: { errors: '' }
+    });
+
+    console.log('Placed order');
+    this.setState({ orders: { item: selection } });
   }
 
   render() {
@@ -139,7 +152,8 @@ class App extends Component {
           <Home onChange={this.handleUserInput}
             log={formErrors}
             cards={cards}
-            onCardClick={this.handleCardClick}
+            onCardClick={this.handleSelection}
+            order={this.handleOrder}
           />
         }
         <Footer />
