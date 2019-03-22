@@ -2,25 +2,25 @@ import firebase from 'firebase';
 
 const db = firebase.firestore();
 
-const component_name = "Services/DB";
+/**
+ * Sends order to the firebase DB
+ * @param {*} order - object containing the details of the order
+ */
+const CompleteOrder = (order) => {
 
-const AddOrder = (orderInquiry) => {
+    const { email, item, date, vendor, total } = order;
 
-    const { email, pizza, price, date, place } = orderInquiry.order;
+    console.log("DB: ", `${email} # ${item} # ${date} # ${vendor} # ${total} #`)
 
-    console.log(component_name, `${email} # ${pizza} # ${date} # ${place} # ${price} #`)
-
-    // Add a new document with a generated id.
     db.collection("orders").add({
         date: date,
         email: email,
-        item: pizza,
-        price: price,
-        vendor: place,
+        item: item,
+        price: total,
+        vendor: vendor
     })
         .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
-            orderInquiry.callback();
         })
         .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -28,7 +28,11 @@ const AddOrder = (orderInquiry) => {
 
 };
 
-const GetAllOrders = (inquiry) => {
+/**
+ * 
+ * @param {*} inquiry request order details
+ */
+const GetOrders = (inquiry) => {
 
     //stuff
     let ordersRef = db.collection("orders");
@@ -40,9 +44,9 @@ const GetAllOrders = (inquiry) => {
             }
         })
         .catch((error) => {
-            console.error(component_name, error);
+            console.error("DB: ", error);
         });
 
 };
 
-export { AddOrder, GetAllOrders };
+export { CompleteOrder, GetOrders };

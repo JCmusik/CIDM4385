@@ -5,8 +5,15 @@ import Header from './components/header';
 import Footer from './components/footer';
 import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
+import { CompleteOrder } from './Services/DB'
 
+/**
+ * array to store selected items in a cart
+ */
 let selection = [];
+/**
+ * array to store the prices of the selected items from the cart
+ */
 let price = [];
 
 class App extends Component {
@@ -176,8 +183,16 @@ class App extends Component {
     this.setState({
       formErrors: { errors: '' }
     });
-    const orders = this.addItemsToOrder();
+
+    function addNums(total, num) {
+      return total + num;
+    }
+
+    let total = price.reduce(addNums);
+    const orders = this.addItemsToOrder(total);
     console.log('Placed order', orders);
+
+    CompleteOrder(orders);
 
     //<Redirect to='/Details' />
   }
@@ -186,14 +201,14 @@ class App extends Component {
    * Adds Items to an order and constructs an order object
    * @returns the orders object
    */
-  addItemsToOrder() {
+  addItemsToOrder(total) {
     const date = new Date();
     const email = this.state.user.email;
     const item = selection;
     // change later
     const vendor = "Pizza place";
-    const orders = { date, email, item, price, vendor };
-    return orders
+    const orders = { date, email, item, total, vendor };
+    return orders;
   }
 
   render() {
