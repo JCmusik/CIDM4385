@@ -227,15 +227,17 @@ class App extends Component {
                   onChange={this.handleUserInput}
                   onClick={this.handleLoginFormSubmission}
                   log={formErrors} /> :
-                <Home onChange={this.handleUserInput}
-                  log={formErrors}
-                  cards={cards}
-                  onCardClick={this.handleSelection}
-                  order={this.handleOrder}
-                />
+                <Mapbox />
+
             }
           />
-          <Route path="/map" component={Mapbox} />
+          <Route path="/home" render={() =>
+            <Home onChange={this.handleUserInput}
+              log={formErrors}
+              cards={cards}
+              onCardClick={this.handleSelection}
+              order={this.handleOrder}
+            />} />
           <Footer />
         </div>
       </Router>
