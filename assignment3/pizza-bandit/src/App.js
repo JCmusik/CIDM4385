@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Home from './components/home';
 import Header from './components/header';
@@ -115,15 +114,14 @@ class App extends Component {
    * If there is an error, `setErrorMessage(error)` is called.
    */
   handleLoginFormSubmission = (e) => {
-    this.handleClick(e);
+    e.preventDefault();
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.setState({
           formErrors: { errors: '' }
         });
       })
-      .catch((error) => { this.setErrorMessage(error) },
-        console.log(error.message)
+      .catch((error) => { this.setErrorMessage(error) }
       );
   }
 
@@ -201,25 +199,23 @@ class App extends Component {
   render() {
     const { formErrors, user, cards } = this.state;
     return (
-      <Router>
-        <div className="App">
-          <Header user={user}
-            logout={this.handleLogout} />
-          {(!user) ?
-            <SignInForm
-              onChange={this.handleUserInput}
-              onClick={this.handleLoginFormSubmission}
-              log={formErrors} /> :
-            <Home onChange={this.handleUserInput}
-              log={formErrors}
-              cards={cards}
-              onCardClick={this.handleSelection}
-              order={this.handleOrder}
-            />
-          }
-          <Footer />
-        </div>
-      </Router>
+      <div className="App">
+        <Header user={user}
+          logout={this.handleLogout} />
+        {(!user) ?
+          <SignInForm
+            onChange={this.handleUserInput}
+            onClick={this.handleLoginFormSubmission}
+            log={formErrors} /> :
+          <Home onChange={this.handleUserInput}
+            log={formErrors}
+            cards={cards}
+            onCardClick={this.handleSelection}
+            order={this.handleOrder}
+          />
+        }
+        <Footer />
+      </div>
     );
   }
 }
