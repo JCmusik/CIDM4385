@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import PizzaPlace from './pizzaPlace';
 
@@ -110,7 +111,8 @@ class PizzaPlaces extends Component {
         const selectedPlace = selection.find(s => s.id === pizzaShop);
 
         this.props.selectedPlace(selectedPlace);
-
+        console.log('selected');
+        return <Redirect to='/home' />
         // TODO: redirect to selection page with accessible selection.
         //       if no selection is made, select the random generated one
 

@@ -34,8 +34,8 @@ const Selection = (props) => {
                     onCardClick={onCardClick}
                 />
             </div>
-            <div className="bg-secondary p-2 rounded">
-                <button onClick={order} className="btn-warning">Place Order</button><span><Logger log={log.errors} /></span>
+            <div className="order bg-secondary text-center p-2 rounded">
+                <button onClick={order} className="btn btn-warning">Place Order</button><span><Logger log={log.errors} /></span>
             </div>
         </React.Fragment>
     )
