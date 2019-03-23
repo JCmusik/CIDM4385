@@ -44,7 +44,8 @@ class App extends Component {
       item: '',
       selection: []
     },
-    pizza_place: ''
+    randomPlace: [],
+    selectedPlace: []
   }
 
   componentDidMount() {
@@ -230,11 +231,19 @@ class App extends Component {
      * Handle a randomly-selected place from the places API
      * @param {*} place - randonly selected pizza place
      */
-  handleSentRandomPlace(place) {
+  handleSentRandomPlace = (place) => {
     console.log("Random place:", place);
-    // this.setState({
-    //   pizza_place: place,
-    // });
+
+    this.setState({
+      randomPlace: place
+    });
+    return place;
+  }
+
+  handleSelectedPlace = (selectedPlace) => {
+    this.setState({
+      selectedPlace
+    });
   }
 
   render() {
@@ -257,6 +266,7 @@ class App extends Component {
                   lat={lat}
                   lng={lng}
                   sendRandomPlace={this.handleSentRandomPlace}
+                  selectedPlace={this.handleSelectedPlace}
                 />
 
             }

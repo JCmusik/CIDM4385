@@ -2,7 +2,8 @@ import React from 'react';
 
 var PizzaPlace = (props) => {
 
-    const { title, vicinity, categoryTitle } = props.placedata;
+    const { id, title, vicinity, categoryTitle } = props.placedata;
+    const { selectPlace } = props;
 
     //credit for this quickie method to turn the HTML breaks in the
     //vicinity string to HTML:
@@ -11,18 +12,18 @@ var PizzaPlace = (props) => {
         let arr = html.split(/<br\s*\/?>/i);
         return arr.reduce((el, a) => el.concat(a, <br />), []);
     }
-
     return (
-        <div className="card">
+        <div className="card" key={id}>
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+                <h5 className="card-title text-primary" id={id} onClick={selectPlace}>{title}</h5>
                 <p className="card-text">{textToHtml(vicinity)}</p>
                 <p className="card-text">
                     <small className="text-muted">{categoryTitle}</small>
                 </p>
             </div>
         </div>
-    );
+
+    )
 }
 
 export default PizzaPlace;

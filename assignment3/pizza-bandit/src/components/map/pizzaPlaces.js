@@ -8,7 +8,9 @@ class PizzaPlaces extends Component {
     state = {
         pizza_place_list: [],
         lat: '',
-        lng: ''
+        lng: '',
+        selectPlace: [],
+        randomPlace: []
     }
 
     componentDidMount = () => {
@@ -83,34 +85,55 @@ class PizzaPlaces extends Component {
 
                 //get a random pizza place and set the parent state with it            
                 if (places.length > 0) {
-                    this.props.sendRandomPlace(places[Math.floor(Math.random() * places.length)]);
+                    const randomPlace = this.props.sendRandomPlace(places[Math.floor(Math.random() * places.length)]);
+
+                    this.setState({
+                        randomPlace
+                    });
                 }
 
-                this.state.pizza_place_list.forEach((pizza_place) => {
-                    // const pizzalocation = pizza_place.title + ' ' +
-                    //     pizza_place.vicinity + ' ' +
-                    //     pizza_place.category;
+                // this.state.pizza_place_list.forEach((pizza_place) => {
+                //     // const pizzalocation = pizza_place.title + ' ' +
+                //     //     pizza_place.vicinity + ' ' +
+                //     //     pizza_place.category;
 
-                }
-                );
+                // }
+                // );
             })
             .catch(error => console.error(error));
+    }
+
+    handleSelectPlace = (e) => {
+        const pizzaShop = e.target.id;
+        const selection = this.state.pizza_place_list;
+
+        const selectedPlace = selection.find(s => s.id === pizzaShop);
+
+        this.props.selectedPlace(selectedPlace);
+
+        // TODO: redirect to selection page with accessible selection.
+        //       if no selection is made, select the random generated one
+
     }
 
     render() {
 
         const places = this.state.pizza_place_list;
-
         return (
-            <div>
-                <h1>{this.props.title}</h1>
-                <div className="card-columns">
-                    {places.map((place) =>
-                        <PizzaPlace key={place.id}
-                            placedata={place} />
-                    )}
+            <React.Fragment>
+                <h5 className="bg-secondary p-3 text-white">Click the title of a nearby pizza shop below to deliver your pizza or<br />
+                    Click <b>Here</b> and we'll randomly select one for you.</h5>
+                <div>
+                    <h1>{this.props.title}</h1>
+                    <div className="card-columns">
+                        {places.map((place) =>
+                            <PizzaPlace key={place.id}
+                                placedata={place}
+                                selectPlace={this.handleSelectPlace} />
+                        )}
+                    </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

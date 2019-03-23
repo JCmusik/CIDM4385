@@ -30,7 +30,7 @@ class Mapbox extends Component {
     }
     render() {
         const { geolocerror, mapstyle } = this.state;
-        const { lat, lng, sendRandomPlace } = this.props;
+        const { lat, lng, sendRandomPlace, selectedPlace } = this.props;
         return (
             <div className="container map" >
                 <p className="bg-danger">{geolocerror}</p>
@@ -51,7 +51,8 @@ class Mapbox extends Component {
                 <PizzaPlaces
                     lat={lat}
                     lng={lng}
-                    sendRandomPlace={sendRandomPlace} />
+                    sendRandomPlace={sendRandomPlace}
+                    selectedPlace={selectedPlace} />
             </div >
         )
     }
