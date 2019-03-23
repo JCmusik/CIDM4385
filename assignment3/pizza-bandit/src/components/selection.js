@@ -12,8 +12,9 @@ let pepperoniPrice = 12.99;
 let supremePrice = 14.99;
 
 const Selection = (props) => {
-    const { cards, onCardClick, order, log, detailPage } = props;
-    if (detailPage === true) { return <Redirect to='/detail' /> };
+    const { cards, onCardClick, order, log, detailPage, auth } = props;
+    if (!auth) { return <Redirect to="/" /> }
+    else if (detailPage === true) { return <Redirect to='/detail' /> };
     return (
         <React.Fragment>
             <div className="card-columns">

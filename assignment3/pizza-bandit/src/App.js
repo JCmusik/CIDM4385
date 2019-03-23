@@ -274,6 +274,7 @@ class App extends Component {
                   selectedPlace={this.handleSelectedPlace}
                   formErrors={formErrors}
                   user={user}
+                  auth={this.authListener}
                 />
 
             }
@@ -287,9 +288,10 @@ class App extends Component {
               selection={selection}
               price={price}
               detailPage={detailPage}
+              auth={this.authListener}
             />} />
           <Route path='/detail' render={() =>
-            <Detail orders={orders}
+            <Detail auth={this.authListener} orders={orders}
               email={user.email} />
           } />
           <Footer />

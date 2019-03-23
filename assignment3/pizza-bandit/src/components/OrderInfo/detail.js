@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 // import { GetOrder } from '../../Services/DB';
 
 
@@ -51,7 +52,8 @@ class Detail extends Component {
     //     GetOrder(request);
     // }
     render() {
-        const { email, item, price, vendor, date } = this.props.orders;
+        const { email, item, price, vendor, date, auth } = this.props.orders;
+        if (!auth) { return <Redirect to="/" /> };
         return (
             <table className="table container table-striped bg-secondary text-white detail">
                 <thead>

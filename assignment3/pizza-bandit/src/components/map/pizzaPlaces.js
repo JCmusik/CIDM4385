@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import PizzaPlace from './pizzaPlace';
-
-let component_name = "Pizza Places: "
+import PizzaPlace from './pizzaPlace'
 
 class PizzaPlaces extends Component {
     state = {
@@ -15,14 +13,14 @@ class PizzaPlaces extends Component {
         redirect: false
     }
 
-    componentDidMount = () => {
+    componentWillReceiveProps = () => {
         let lat = this.props.lat;
         let lng = this.props.lng;
         this.setState({
             lat,
             lng
         });
-        console.log(component_name, `Lat: ${lat} Lng: ${lng}`);
+        console.log("Pizza Places: ", `Lat: ${lat} Lng: ${lng}`);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -31,8 +29,8 @@ class PizzaPlaces extends Component {
         if lat or lon changed */
         if (this.props.lat !== prevProps.lat || this.props.lng !== prevProps.lng) {
 
-            console.log(component_name, `Previous Lat: ${prevProps.lat} and Prevous Lon:${prevProps.lng}`);
-            console.log(component_name, `Current Lat: ${this.props.lat} and Current Lon:${this.props.lng}`);
+            console.log("Pizza Places: ", `Previous Lat: ${prevProps.lat} and Prevous Lon:${prevProps.lng}`);
+            console.log("Pizza Places: ", `Current Lat: ${this.props.lat} and Current Lon:${this.props.lng}`);
 
             //make rest call
             this.getPizzaPlacesFromHereAPI();
@@ -94,13 +92,13 @@ class PizzaPlaces extends Component {
                     });
                 }
 
-                // this.state.pizza_place_list.forEach((pizza_place) => {
-                //     // const pizzalocation = pizza_place.title + ' ' +
-                //     //     pizza_place.vicinity + ' ' +
-                //     //     pizza_place.category;
+                this.state.pizza_place_list.forEach((pizza_place) => {
+                    // const pizzalocation = pizza_place.title + ' ' +
+                    //     pizza_place.vicinity + ' ' +
+                    //     pizza_place.category;
 
-                // }
-                // );
+                }
+                );
             })
             .catch(error => console.error(error));
     }
@@ -125,7 +123,6 @@ class PizzaPlaces extends Component {
     render() {
         const places = this.state.pizza_place_list;
         if (this.state.redirect === true) { return <Redirect to='/home' /> };
-
         return (
             <React.Fragment>
                 <h5 className="bg-secondary p-3 text-white">Click the title of a nearby pizza shop below to deliver your pizza or<br />

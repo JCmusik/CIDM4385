@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import PizzaPlaces from './pizzaPlaces';
+import { Redirect } from 'react-router-dom';
 
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_API_ACCESS_TOKEN
@@ -12,8 +13,9 @@ class Mapbox extends Component {
         geolocerror: ''
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setCurrentLocation();
+        console.log('Mapbox did mount');
     }
 
     setCurrentLocation() {
@@ -30,7 +32,8 @@ class Mapbox extends Component {
     }
     render() {
         const { geolocerror, mapstyle } = this.state;
-        const { lat, lng, sendRandomPlace, selectedPlace } = this.props;
+        const { lat, lng, sendRandomPlace, selectedPlace, auth } = this.props;
+        if (!auth) { return <Redirect to='/' /> };
         return (
             <div className="container map" >
                 <p className="bg-danger">{geolocerror}</p>
@@ -53,6 +56,7 @@ class Mapbox extends Component {
                     lng={lng}
                     sendRandomPlace={sendRandomPlace}
                     selectedPlace={selectedPlace}
+                    auth={auth}
                 />
             </div >
         )
