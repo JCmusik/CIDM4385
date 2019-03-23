@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import PizzaPlaces from './pizzaPlaces';
 
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_API_ACCESS_TOKEN
@@ -7,11 +8,8 @@ const Map = ReactMapboxGl({
 
 class Mapbox extends Component {
     state = {
-        lat: '',
-        lng: '',
         mapstyle: 'light',
         geolocerror: ''
-
     }
 
     componentDidMount() {
@@ -21,13 +19,9 @@ class Mapbox extends Component {
     setCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                this.setState(() => {
-                    return {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }
-                }
-                );
+                let lat = position.coords.latitude;
+                let lng = position.coords.longitude;
+                this.props.setCoords(lat, lng);
             });
         } else {
             const geolocerror = '[blocked] Access to geolocation was blocked over insecure connection to http://localhost:3000';
@@ -35,7 +29,8 @@ class Mapbox extends Component {
         }
     }
     render() {
-        const { geolocerror, lat, lng, mapstyle } = this.state;
+        const { geolocerror, mapstyle } = this.state;
+        const { lat, lng, sendRandomPlace } = this.props;
         return (
             <div className="container map" >
                 <p className="bg-danger">{geolocerror}</p>
@@ -43,7 +38,7 @@ class Mapbox extends Component {
                     style={`mapbox://styles/mapbox/${mapstyle}-v9`}
                     center={[lng, lat]}
                     containerStyle={{
-                        height: "400px",
+                        height: "200px",
                         width: "100%"
                     }}>
                     <Layer type="symbol"
@@ -53,6 +48,10 @@ class Mapbox extends Component {
                         <Feature coordinates={[lng, lat]} />
                     </Layer>
                 </Map>
+                <PizzaPlaces
+                    lat={lat}
+                    lng={lng}
+                    sendRandomPlace={sendRandomPlace} />
             </div >
         )
     }

@@ -43,7 +43,8 @@ class App extends Component {
     cards: {
       item: '',
       selection: []
-    }
+    },
+    pizza_place: ''
   }
 
   componentDidMount() {
@@ -213,8 +214,31 @@ class App extends Component {
     return orders;
   }
 
+  /**
+   * sets state from lat/lng passed from child
+   * @param {*} lat lattitiude set by mapbox
+   * @param {*} lng longitude set by mapbox
+   */
+  setCoords = (lat, lng) => {
+    this.setState({
+      lat,
+      lng
+    });
+  }
+
+  /**
+     * Handle a randomly-selected place from the places API
+     * @param {*} place - randonly selected pizza place
+     */
+  handleSentRandomPlace(place) {
+    console.log("Random place:", place);
+    // this.setState({
+    //   pizza_place: place,
+    // });
+  }
+
   render() {
-    const { formErrors, user, cards } = this.state;
+    const { formErrors, user, cards, lat, lng } = this.state;
     return (
       <Router>
         <div className="App">
@@ -226,8 +250,14 @@ class App extends Component {
                 <SignInForm
                   onChange={this.handleUserInput}
                   onClick={this.handleLoginFormSubmission}
-                  log={formErrors} /> :
-                <Mapbox />
+                  log={formErrors}
+                  lat={lat}
+                  lng={lng} /> :
+                <Mapbox setCoords={this.setCoords}
+                  lat={lat}
+                  lng={lng}
+                  sendRandomPlace={this.handleSentRandomPlace}
+                />
 
             }
           />
@@ -237,6 +267,8 @@ class App extends Component {
               cards={cards}
               onCardClick={this.handleSelection}
               order={this.handleOrder}
+              selection={selection}
+              price={price}
             />} />
           <Footer />
         </div>
