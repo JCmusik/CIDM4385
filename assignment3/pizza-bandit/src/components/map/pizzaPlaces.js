@@ -11,7 +11,8 @@ class PizzaPlaces extends Component {
         lat: '',
         lng: '',
         selectPlace: [],
-        randomPlace: []
+        randomPlace: [],
+        redirect: false
     }
 
     componentDidMount = () => {
@@ -112,15 +113,19 @@ class PizzaPlaces extends Component {
 
         this.props.selectedPlace(selectedPlace);
         console.log('selected');
-        return <Redirect to='/home' />
+
+        this.setState({
+            redirect: true
+        });
         // TODO: redirect to selection page with accessible selection.
         //       if no selection is made, select the random generated one
 
     }
 
     render() {
-
         const places = this.state.pizza_place_list;
+        if (this.state.redirect === true) { return <Redirect to='/home' /> };
+
         return (
             <React.Fragment>
                 <h5 className="bg-secondary p-3 text-white">Click the title of a nearby pizza shop below to deliver your pizza or<br />
@@ -135,7 +140,7 @@ class PizzaPlaces extends Component {
                         )}
                     </div>
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

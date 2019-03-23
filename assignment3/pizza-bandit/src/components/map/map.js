@@ -52,7 +52,8 @@ class Mapbox extends Component {
                     lat={lat}
                     lng={lng}
                     sendRandomPlace={sendRandomPlace}
-                    selectedPlace={selectedPlace} />
+                    selectedPlace={selectedPlace}
+                />
             </div >
         )
     }

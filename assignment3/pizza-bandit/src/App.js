@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import Home from './components/home';
 import Header from './components/header';
 import Footer from './components/footer';
+import Home from './components/home';
 import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 import Mapbox from './components/map/map';
 import { CompleteOrder } from './Services/DB'
+import Detail from './components/OrderInfo/detail';
 
 /**
  * array to store selected items in a cart
@@ -45,7 +46,8 @@ class App extends Component {
       selection: []
     },
     randomPlace: [],
-    selectedPlace: []
+    selectedPlace: [],
+    detailPage: false
   }
 
   componentDidMount() {
@@ -197,8 +199,9 @@ class App extends Component {
     console.log('Placed order', orders);
 
     CompleteOrder(orders);
-
-    //<Redirect to='/Details' />
+    this.setState({
+      detailPage: true
+    });
   }
 
   /**
@@ -209,8 +212,10 @@ class App extends Component {
     const date = new Date();
     const email = this.state.user.email;
     const item = selection;
+    let vendor = [];
     // change later
-    const vendor = "Pizza place";
+    (this.state.selectedPlace) ? vendor = this.state.selectedPlace : vendor = this.state.randomPlace;
+
     const orders = { date, email, item, total, vendor };
     return orders;
   }
@@ -247,7 +252,7 @@ class App extends Component {
   }
 
   render() {
-    const { formErrors, user, cards, lat, lng } = this.state;
+    const { formErrors, user, cards, lat, lng, detailPage, orders } = this.state;
     return (
       <Router>
         <div className="App">
@@ -267,6 +272,8 @@ class App extends Component {
                   lng={lng}
                   sendRandomPlace={this.handleSentRandomPlace}
                   selectedPlace={this.handleSelectedPlace}
+                  formErrors={formErrors}
+                  user={user}
                 />
 
             }
@@ -279,7 +286,12 @@ class App extends Component {
               order={this.handleOrder}
               selection={selection}
               price={price}
+              detailPage={detailPage}
             />} />
+          <Route path='/detail' render={() =>
+            <Detail orders={orders}
+              email={user.email} />
+          } />
           <Footer />
         </div>
       </Router>
