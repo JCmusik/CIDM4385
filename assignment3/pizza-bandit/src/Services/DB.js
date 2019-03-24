@@ -37,7 +37,7 @@ const GetOrders = (inquiry) => {
     //stuff
     let ordersRef = db.collection("orders");
 
-    ordersRef.orderBy('date').limit(1).get()
+    ordersRef.orderBy('date').get()
         .then((querySnapshot) => {
             if (!querySnapshot.empty) {
                 inquiry.callback(querySnapshot);

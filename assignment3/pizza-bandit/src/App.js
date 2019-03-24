@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import firebase from './Services/Firebase';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './components/home';
 import SignInForm from './components/signin/signinForm';
 import Mapbox from './components/map/map';
-import { CompleteOrder, GetOrder } from './Services/DB';
+import { CompleteOrder } from './Services/DB';
 import Detail from './components/OrderInfo/detail';
 
 /**
@@ -62,7 +62,7 @@ class App extends Component {
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
       (user) ? this.setState({ user: { userAuthenticated: true, email: user.email } }) : this.setState({
-        user: ''
+        user: '', userAuthenticated: false
       });
     })
   }
@@ -258,7 +258,7 @@ class App extends Component {
   }
 
   render() {
-    const { formErrors, user, cards, lat, lng, detailPage, orders, userAuthenticated } = this.state;
+    const { formErrors, user, cards, lat, lng, detailPage, auth } = this.state;
     return (
       <Router>
         <div className="App">
@@ -267,12 +267,8 @@ class App extends Component {
           <Route exact path="/"
             render={() =>
               (!user) ?
-                <SignInForm
-                  onChange={this.handleUserInput}
-                  onClick={this.handleLoginFormSubmission}
-                  log={formErrors}
-                  lat={lat}
-                  lng={lng} /> :
+                <Redirect to="/signin" />
+                :
                 <Mapbox setCoords={this.setCoords}
                   lat={lat}
                   lng={lng}
@@ -285,6 +281,15 @@ class App extends Component {
 
             }
           />
+          <Route path="/signin" render={() =>
+            <SignInForm
+              auth={auth}
+              onChange={this.handleUserInput}
+              onClick={this.handleLoginFormSubmission}
+              log={formErrors}
+              lat={lat}
+              lng={lng} />
+          } />
           <Route path="/home" render={() =>
             <Home onChange={this.handleUserInput}
               log={formErrors}
