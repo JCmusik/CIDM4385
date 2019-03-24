@@ -124,7 +124,7 @@ class PizzaPlaces extends Component {
         return (
             <React.Fragment>
                 <h5 className="bg-secondary p-3 text-white">Click the title of a nearby pizza shop below to deliver your pizza or<br />
-                    Click <button className="btn btn-primary" onClick={this.handleSelectPlace}>Here</button> and we'll randomly select one for you.</h5>
+                    Click <button className="btn btn-sm btn-primary" onClick={this.handleSelectPlace}>Here</button> and we'll randomly select one for you.</h5>
                 <div>
                     <h1>{this.props.title}</h1>
                     <div className="card-columns">

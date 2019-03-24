@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { GetOrders } from '../../Services/DB';
 import DetailItem from './detailItem';
-
-let component_name = "Detail";
-
 
 class Detail extends Component {
     state = {
@@ -36,10 +33,6 @@ class Detail extends Component {
                     results.push(orderItem);
                 });
 
-                results.forEach((item) => {
-                    console.log(component_name, item.id);
-                });
-
                 this.setState({
                     order: results
                 });
@@ -55,24 +48,30 @@ class Detail extends Component {
         const { user } = this.props;
         if (user) { return <Redirect to="/" /> };
         return (
-            <table className="table container table-striped bg-secondary text-white detail">
-                <thead>
-                    <tr>
-                        <th>Item:</th>
-                        <th>Price:</th>
-                        <th>Vendor:</th>
-                        <th>Date:</th>
-                        <th>Time:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.order.map((order) =>
-                        <DetailItem
-                            key={order.id}
-                            order={order}
-                        />)}
-                </tbody>
-            </table>
+            <div className="container">
+                <table className="table bg-secondary text-white detail">
+                    <thead className="thead-dark ">
+                        <tr className="text-center">
+                            <th colSpan="4">Orders</th>
+                            <th><button className="btn btn-warning float-right"><Link to="/" >Home</Link></button></th>
+                        </tr>
+                        <tr>
+                            <th>Item:</th>
+                            <th>Price:</th>
+                            <th>Vendor:</th>
+                            <th>Date:</th>
+                            <th>Time:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.order.map((order) =>
+                            <DetailItem
+                                key={order.id}
+                                order={order}
+                            />)}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

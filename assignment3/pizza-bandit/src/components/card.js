@@ -7,7 +7,7 @@ const Card = (props) => {
         <div className="card bg-secondary">
             <div className="card-body text-center">
                 <div className="card-title"><img className="img-thumbnail rounded" src={image} alt={title} /></div>
-                <h4 className="card-title bg">{title} {price}</h4>
+                <h4 className="card-title">{title} {price}</h4>
                 <SelectButton price={price} title={title} cards={cards}
                     onCardClick={onCardClick} />
             </div>

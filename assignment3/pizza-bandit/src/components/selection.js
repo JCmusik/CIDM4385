@@ -16,7 +16,7 @@ const Selection = (props) => {
     if (!auth) { return <Redirect to="/" /> }
     else if (detailPage === true) { return <Redirect to='/detail' /> };
     return (
-        <React.Fragment>
+        <div className="container">
             <div className="card-columns">
                 <Card
                     title="Cheese "
@@ -38,14 +38,12 @@ const Selection = (props) => {
                     onCardClick={onCardClick}
                 />
             </div>
-            <div className="order bg-secondary text-center p-2 rounded">
-                <button onClick={order} className="btn btn-warning">Place Order</button><span><Logger log={log.errors} /></span>
-            </div>
+            <button onClick={order} className="btn btn-warning btn-lg btn-block">Place Order</button><span><Logger log={log.errors} /></span>
             <Route path="/detail" render={() =>
                 <Detail
                     auth={auth}
                     orders={order} />} />
-        </React.Fragment>
+        </div>
     )
 }
 

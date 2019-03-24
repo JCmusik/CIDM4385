@@ -1,9 +1,9 @@
-.header {
+.header{
     position: absolute;
     top: 0px;
     height: 100px;
     width: 100%;
-    font-size: 1.7em;
+    padding-top: 15px;
   }
 
   body {
@@ -11,23 +11,13 @@
     background-repeat: repeat-y;
     background-size: 100%;
   }
-  .wrapper {
-    position: relative;
-    top: 7rem;
-  }
 
-  .map, form{
-    margin-top: 8em;
+  navbar, navbar a, navbar a:hover {
+    padding: 0px;
+    margin-top: 5.8rem;
+    color: white;
+    text-decoration: none;
   }
-
-  .detail {
-    margin-top: 8em;
-  }
-
-  .card-columns, .order  {
-    margin-bottom: 3rem;
-  }
-
 
   .footer {
     position: fixed;

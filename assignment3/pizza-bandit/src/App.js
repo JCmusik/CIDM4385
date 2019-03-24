@@ -3,6 +3,7 @@ import firebase from './Services/Firebase';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Header from './components/header';
+import NavBar from './components/navbar';
 import Footer from './components/footer';
 import Home from './components/home';
 import SignInForm from './components/signin/signinForm';
@@ -266,6 +267,7 @@ class App extends Component {
         <div className="App">
           <Header user={user}
             logout={this.handleLogout} />
+          <NavBar />
           <Route exact path="/"
             render={() =>
               (!user) ?

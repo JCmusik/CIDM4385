@@ -2,8 +2,6 @@ import React from 'react';
 
 const DetailItem = (props) => {
 
-    console.log("Detail Item: ", props);
-
     const { date, item, price, vendor } = props.order;
 
     let datestring = new Date(date.seconds * 1000).toLocaleDateString();

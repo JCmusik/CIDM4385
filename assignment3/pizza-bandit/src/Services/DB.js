@@ -10,7 +10,7 @@ const CompleteOrder = (order) => {
 
     const { email, item, date, vendor, total } = order;
 
-    console.log("DB: ", `${email} | ${item} | ${date} | ${vendor} | ${total} |`);
+    // console.log("DB: ", `${email} | ${item} | ${date} | ${vendor} | ${total} |`);
 
     db.collection("orders").add({
         date: date,
@@ -20,7 +20,7 @@ const CompleteOrder = (order) => {
         vendor: vendor
     })
         .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
