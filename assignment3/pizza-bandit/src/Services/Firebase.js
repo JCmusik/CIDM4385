@@ -8,6 +8,8 @@ var config = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
 };
-firebase.initializeApp(config);
 
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
 export default firebase;

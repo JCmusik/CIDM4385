@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fireBase from './Services/Firebase';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/header';
@@ -7,7 +8,7 @@ import Home from './components/home';
 import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 import Mapbox from './components/map/map';
-import { CompleteOrder } from './Services/DB'
+import { CompleteOrder, GetOrder } from './Services/DB';
 import Detail from './components/OrderInfo/detail';
 
 /**
@@ -66,6 +67,8 @@ class App extends Component {
       });
     })
   }
+
+
 
   /**
    * When user types in an input field, store the name and value of the target element.
@@ -154,6 +157,9 @@ class App extends Component {
    */
   handleLogout = () => {
     firebase.auth().signOut();
+    this.setState({
+      userAuthenticated: false
+    });
   }
 
   /**
@@ -177,7 +183,10 @@ class App extends Component {
     * If false, the `placeOrder()` method is called
     */
   handleOrder = () => {
-    (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder()
+    (selection.length === 0) ? this.setState({ formErrors: { errors: 'Your Cart is empty' } }) : this.placeOrder();
+    this.setState({
+
+    });
   }
 
   /**
@@ -196,12 +205,13 @@ class App extends Component {
 
     let total = price.reduce(addNums);
     const orders = this.addItemsToOrder(total);
-    console.log('Placed order', orders);
 
-    CompleteOrder(orders);
     this.setState({
+      orders: orders,
       detailPage: true
     });
+    console.log("App Order: ", orders)
+    CompleteOrder(orders);
   }
 
   /**
@@ -252,7 +262,7 @@ class App extends Component {
   }
 
   render() {
-    const { formErrors, user, cards, lat, lng, detailPage, orders } = this.state;
+    const { formErrors, user, cards, lat, lng, detailPage, orders, userAuthenticated } = this.state;
     return (
       <Router>
         <div className="App">
@@ -291,8 +301,9 @@ class App extends Component {
               auth={this.authListener}
             />} />
           <Route path='/detail' render={() =>
-            <Detail auth={this.authListener} orders={orders}
-              email={user.email} />
+            <Detail auth={this.authListener}
+              email={user.email}
+              fireBase={firebase} />
           } />
           <Footer />
         </div>

@@ -8,7 +8,7 @@ import 'react-mapbox-gl';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'jquery/dist/jquery';
-import 'popper.js'
+import 'popper.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

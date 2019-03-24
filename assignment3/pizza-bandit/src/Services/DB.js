@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 const db = firebase.firestore();
 
@@ -12,34 +12,34 @@ const CompleteOrder = (order) => {
 
     console.log("DB: ", `${email} | ${item} | ${date} | ${vendor} | ${total} |`);
 
-    // db.collection("orders").add({
-    //     date: date,
-    //     email: email,
-    //     item: item,
-    //     price: total,
-    //     vendor: vendor
-    // })
-    //     .then(function (docRef) {
-    //         console.log("Document written with ID: ", docRef.id);
-    //     })
-    //     .catch(function (error) {
-    //         console.error("Error adding document: ", error);
-    //     });
+    db.collection("orders").add({
+        date: date,
+        email: email,
+        item: item,
+        price: total,
+        vendor: vendor
+    })
+        .then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
 
 };
 
 const GetOrder = (request) => {
-    // let ordersRef = db.collection("orders");
+    let ordersRef = db.collection("orders");
 
-    // ordersRef.where("email", "==", `${request.email}`).get()
-    //     .then((querySnapshot) => {
-    //         if (!querySnapshot.empty) {
-    //             request.callback(querySnapshot);
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error("DB: ", error);
-    //     });
+    ordersRef.where("email", "==", `${request.email}`).get()
+        .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                request.callback(querySnapshot);
+            }
+        })
+        .catch((error) => {
+            console.error("DB: ", error);
+        });
 }
 
 /**

@@ -41,7 +41,10 @@ const Selection = (props) => {
             <div className="order bg-secondary text-center p-2 rounded">
                 <button onClick={order} className="btn btn-warning">Place Order</button><span><Logger log={log.errors} /></span>
             </div>
-            <Route path="/detail" component={Detail} />
+            <Route path="/detail" render={() =>
+                <Detail
+                    auth={auth}
+                    orders={order} />} />
         </React.Fragment>
     )
 }

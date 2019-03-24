@@ -8,15 +8,15 @@ You've followed along with me all semester so far with the Pizza Bandit program.
     * ~~save this information to Firebase~~
 * Create a form that allows a user to order a pizza
     * ~~user must be signed in~~
-    * use location services to get lat/lon
-    * use a web service to get ZIP code from lat lon
+    * ~~use location services to get lat/lon~~
+    * ~~use a web service to get ZIP code from lat lon~~
     * ~~select from three pizzas - cheese, pepperoni, and supreme~~
 * Order sourcing and order saving
-    * Using ZIP code find nearby Pizza places - we'll use a real web service here
+    * ~~Using ZIP code find nearby Pizza places - we'll use a real web service here~~
 * Confirmation and delivery screen
     * finalize delivery street address
     * show delivery street address on mapbox
-    * You'll save the order to Firebase
+    * ~~You'll save the order to Firebase~~
     * You'll confirm the order via an email
 
 This is a significant undertaking and the remainder of our class time between then and now will focus on these requirements.
