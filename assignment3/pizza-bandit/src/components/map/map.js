@@ -15,7 +15,6 @@ class Mapbox extends Component {
 
     componentWillMount() {
         this.setCurrentLocation();
-        console.log('Mapbox did mount');
     }
 
     setCurrentLocation() {
@@ -32,7 +31,7 @@ class Mapbox extends Component {
     }
     render() {
         const { geolocerror, mapstyle } = this.state;
-        const { lat, lng, sendRandomPlace, selectedPlace, auth } = this.props;
+        const { lat, lng, sendRandomPlace, selectedPlace, auth, randomPlace } = this.props;
         if (!auth) { return <Redirect to='/' /> };
         return (
             <div className="container map" >
@@ -54,6 +53,7 @@ class Mapbox extends Component {
                 <PizzaPlaces
                     lat={lat}
                     lng={lng}
+                    randomPlace={randomPlace}
                     sendRandomPlace={sendRandomPlace}
                     selectedPlace={selectedPlace}
                     auth={auth}

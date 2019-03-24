@@ -258,7 +258,7 @@ class App extends Component {
   }
 
   render() {
-    const { formErrors, user, cards, lat, lng, detailPage, auth } = this.state;
+    const { formErrors, user, cards, lat, lng, detailPage, userAuthenticated, randomPlace } = this.state;
     return (
       <Router>
         <div className="App">
@@ -267,13 +267,19 @@ class App extends Component {
           <Route exact path="/"
             render={() =>
               (!user) ?
-                <Redirect to="/signin" />
-                :
+                <SignInForm
+                  userAuth={userAuthenticated}
+                  onChange={this.handleUserInput}
+                  onClick={this.handleLoginFormSubmission}
+                  log={formErrors}
+                  lat={lat}
+                  lng={lng} /> :
                 <Mapbox setCoords={this.setCoords}
                   lat={lat}
                   lng={lng}
                   sendRandomPlace={this.handleSentRandomPlace}
                   selectedPlace={this.handleSelectedPlace}
+                  randomPlace={randomPlace}
                   formErrors={formErrors}
                   user={user}
                   auth={this.authListener}
@@ -281,15 +287,6 @@ class App extends Component {
 
             }
           />
-          <Route path="/signin" render={() =>
-            <SignInForm
-              auth={auth}
-              onChange={this.handleUserInput}
-              onClick={this.handleLoginFormSubmission}
-              log={formErrors}
-              lat={lat}
-              lng={lng} />
-          } />
           <Route path="/home" render={() =>
             <Home onChange={this.handleUserInput}
               log={formErrors}
@@ -302,9 +299,11 @@ class App extends Component {
               auth={this.authListener}
             />} />
           <Route path='/detail' render={() =>
-            <Detail auth={this.authListener}
-              email={user.email}
-              fireBase={firebase} />
+            (!user) ?
+              <Redirect to='/' /> :
+              <Detail auth={this.authListener}
+                email={user.email}
+                fireBase={firebase} />
           } />
           <Footer />
         </div>
