@@ -13,8 +13,8 @@ class Detail extends Component {
     componentWillMount = () => {
         let ordersInquiry = {
             email: this.props.email,
-            //by passing this method into the firebase method, we will use it to
-            //receive data from the firebase cloud firestore
+
+
             callback: (docs) => {
 
                 let results = []
@@ -24,6 +24,7 @@ class Detail extends Component {
                     const { date, email, price, item, vendor } = doc.data();
 
                     let orderItem = {
+                        id: doc.id,
                         date: date,
                         email: email,
                         item: item,
@@ -35,7 +36,7 @@ class Detail extends Component {
                 });
 
                 results.forEach((item) => {
-                    console.log(component_name, item.id, " => ", item.email);
+                    console.log(component_name, item.id);
                 });
 
                 this.setState({
@@ -51,7 +52,6 @@ class Detail extends Component {
 
     render() {
         const { user } = this.props;
-        const { order } = this.state;
         if (user) { return <Redirect to="/" /> };
         return (
             <table className="table container table-striped bg-secondary text-white detail">
