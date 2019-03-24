@@ -19,19 +19,19 @@ const Selection = (props) => {
         <React.Fragment>
             <div className="card-columns">
                 <Card
-                    title="Cheese"
+                    title="Cheese "
                     image={Cheese}
                     price={cheesePrice}
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
-                    title="Pepperoni"
+                    title="Pepperoni "
                     image={Pepp}
                     price={pepperoniPrice}
                     cards={cards}
                     onCardClick={onCardClick} />
                 <Card
-                    title="Supreme"
+                    title="Supreme "
                     image={Supreme}
                     price={supremePrice}
                     cards={cards}
