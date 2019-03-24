@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { GetOrders } from '../../Services/DB';
+import DetailItem from './detailItem';
 
 let component_name = "Detail";
 
@@ -61,12 +62,15 @@ class Detail extends Component {
                         <th>Price:</th>
                         <th>Vendor:</th>
                         <th>Date:</th>
+                        <th>Time:</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-
-                    </tr>
+                    {this.state.order.map((order) =>
+                        <DetailItem
+                            key={order.id}
+                            order={order}
+                        />)}
                 </tbody>
             </table>
         )
