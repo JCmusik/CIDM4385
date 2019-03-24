@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { GetOrder } from '../../Services/DB';
+import { GetOrders } from '../../Services/DB';
 
-// let orders = { date, email, item, price, vendor };
+let component_name = "Detail";
+
+
 class Detail extends Component {
     state = {
         order: []
     }
 
     componentWillMount = () => {
-
-        let request = {
+        let ordersInquiry = {
             email: this.props.email,
             //by passing this method into the firebase method, we will use it to
             //receive data from the firebase cloud firestore
@@ -22,8 +23,7 @@ class Detail extends Component {
 
                     const { date, email, price, item, vendor } = doc.data();
 
-                    let order = {
-                        id: doc.id,
+                    let orderItem = {
                         date: date,
                         email: email,
                         item: item,
@@ -31,25 +31,26 @@ class Detail extends Component {
                         vendor: vendor,
                     }
 
-                    results.push(order);
+                    results.push(orderItem);
                 });
 
                 results.forEach((item) => {
-                    console.log("Detail: ", item.id, " => ", item.email);
+                    console.log(component_name, item.id, " => ", item.email);
                 });
 
-                this.setState(
-                    {
-                        order: results,
-                    }
-                );
+                this.setState({
+                    order: results
+                });
+
             }
         }
 
-        GetOrder(request);
+        GetOrders(ordersInquiry);
     }
+
+
     render() {
-        const { user, userAuth } = this.props;
+        const { user } = this.props;
         const { order } = this.state;
         if (user) { return <Redirect to="/" /> };
         return (
@@ -64,12 +65,7 @@ class Detail extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        {/* <td>{order.email}</td>
-                        <td>{order.item}</td>
-                        <td>{order.price}</td>
-                        <td>{order.vendor.title}</td>
-                        <td>{order.date}</td> */}
-                        {console.log(this.state.order)}
+
                     </tr>
                 </tbody>
             </table>

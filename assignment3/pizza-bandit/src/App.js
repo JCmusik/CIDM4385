@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import fireBase from './Services/Firebase';
+import firebase from './Services/Firebase';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './components/home';
-import firebase from './Services/Firebase';
 import SignInForm from './components/signin/signinForm';
 import Mapbox from './components/map/map';
 import { CompleteOrder, GetOrder } from './Services/DB';
@@ -210,7 +209,6 @@ class App extends Component {
       orders: orders,
       detailPage: true
     });
-    console.log("App Order: ", orders)
     CompleteOrder(orders);
   }
 
@@ -247,8 +245,6 @@ class App extends Component {
      * @param {*} place - randonly selected pizza place
      */
   handleSentRandomPlace = (place) => {
-    console.log("Random place:", place);
-
     this.setState({
       randomPlace: place
     });

@@ -19,28 +19,14 @@ const CompleteOrder = (order) => {
         price: total,
         vendor: vendor
     })
-        .then(function (docRef) {
+        .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.error("Error adding document: ", error);
         });
-
 };
 
-const GetOrder = (request) => {
-    let ordersRef = db.collection("orders");
-
-    ordersRef.where("email", "==", `${request.email}`).get()
-        .then((querySnapshot) => {
-            if (!querySnapshot.empty) {
-                request.callback(querySnapshot);
-            }
-        })
-        .catch((error) => {
-            console.error("DB: ", error);
-        });
-}
 
 /**
  * 
@@ -63,4 +49,4 @@ const GetOrders = (inquiry) => {
 
 };
 
-export { CompleteOrder, GetOrder, GetOrders };
+export { CompleteOrder, GetOrders };
