@@ -157,7 +157,8 @@ class App extends Component {
   handleLogout = () => {
     firebase.auth().signOut();
     this.setState({
-      userAuthenticated: false
+      userAuthenticated: false,
+      detailPage: false
     });
   }
 
@@ -288,16 +289,17 @@ class App extends Component {
             }
           />
           <Route path="/home" render={() =>
-            <Home onChange={this.handleUserInput}
-              log={formErrors}
-              cards={cards}
-              onCardClick={this.handleSelection}
-              order={this.handleOrder}
-              selection={selection}
-              price={price}
-              detailPage={detailPage}
-              auth={this.authListener}
-            />} />
+            (!user) ? <Redirect to="/" /> :
+              <Home onChange={this.handleUserInput}
+                log={formErrors}
+                cards={cards}
+                onCardClick={this.handleSelection}
+                order={this.handleOrder}
+                selection={selection}
+                price={price}
+                detailPage={detailPage}
+                auth={this.authListener}
+              />} />
           <Route path='/detail' render={() =>
             (!user) ?
               <Redirect to='/' /> :
