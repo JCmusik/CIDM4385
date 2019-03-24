@@ -106,11 +106,13 @@ class PizzaPlaces extends Component {
     handleSelectPlace = (e) => {
         const pizzaShop = e.target.id;
         const selection = this.state.pizza_place_list;
+        const randomselect = this.props.randomPlace;
 
         const selectedPlace = selection.find(s => s.id === pizzaShop);
 
-        this.props.selectedPlace(selectedPlace);
+        (selectedPlace === []) ? this.props.selectedPlace(randomselect) : this.props.selectedPlace(selectedPlace);
 
+        console.log("Sel " + selectedPlace + " Rand " + randomselect);
         this.setState({
             redirect: true
         });
