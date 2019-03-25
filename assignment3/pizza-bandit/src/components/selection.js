@@ -38,7 +38,9 @@ const Selection = (props) => {
                     onCardClick={onCardClick}
                 />
             </div>
-            <button onClick={order} className="btn btn-warning btn-lg btn-block">Place Order</button><span><Logger log={log.errors} /></span>
+            <div className="order bg-secondary p-2 text-center">
+                <button onClick={order} className="btn btn-warning btn-lg">Place Order</button><span><Logger log={log.errors} /></span>
+            </div>
             <Route path="/detail" render={() =>
                 <Detail
                     auth={auth}
