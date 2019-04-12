@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { GetOrders } from '../../Services/DB';
 import DetailItem from './detailItem';
+import * as ROUTES from '../../Services/Routes';
 
 class Detail extends Component {
     state = {
@@ -46,7 +47,7 @@ class Detail extends Component {
 
     render() {
         const { user } = this.props;
-        if (user) { return <Redirect to="/" /> };
+        if (user) { return <Redirect to={ROUTES.APP} /> };
         return (
             <div className="container">
                 <table className="table bg-secondary text-white detail">

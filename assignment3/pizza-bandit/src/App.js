@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './Services/Firebase';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import * as ROUTES from './Services/Routes'
 import './App.css';
 import Header from './components/header';
 import NavBar from './components/navbar';
@@ -268,7 +269,7 @@ class App extends Component {
           <Header user={user}
             logout={this.handleLogout} />
           <NavBar />
-          <Route exact path="/"
+          <Route exact path={ROUTES.APP}
             render={() =>
               (!user) ?
                 <SignInForm
@@ -291,8 +292,8 @@ class App extends Component {
 
             }
           />
-          <Route path="/home" render={() =>
-            (!user) ? <Redirect to="/" /> :
+          <Route path={ROUTES.HOME} render={() =>
+            (!user) ? <Redirect to={ROUTES.APP} /> :
               <Home onChange={this.handleUserInput}
                 log={formErrors}
                 cards={cards}
@@ -303,9 +304,9 @@ class App extends Component {
                 detailPage={detailPage}
                 auth={this.authListener}
               />} />
-          <Route path='/detail' render={() =>
+          <Route path={ROUTES.DETAIL} render={() =>
             (!user) ?
-              <Redirect to='/' /> :
+              <Redirect to={ROUTES.APP} /> :
               <Detail auth={this.authListener}
                 email={user.email}
                 fireBase={firebase} />

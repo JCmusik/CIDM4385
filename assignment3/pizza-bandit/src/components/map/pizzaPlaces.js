@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { HOME } from '../../Services/Routes';
 
 import PizzaPlace from './pizzaPlace'
 
@@ -120,7 +121,7 @@ class PizzaPlaces extends Component {
 
     render() {
         const places = this.state.pizza_place_list;
-        if (this.state.redirect === true) { return <Redirect to='/home' /> };
+        if (this.state.redirect === true) { return <Redirect to={HOME} /> };
         return (
             <React.Fragment>
                 <h5 className="bg-secondary p-3 text-white">Click the title of a nearby pizza shop below to deliver your pizza or<br />

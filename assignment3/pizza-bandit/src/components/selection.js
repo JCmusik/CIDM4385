@@ -6,6 +6,7 @@ import Supreme from '../img/supreme.jpg';
 import Logger from '../components/signin/logger';
 import { Redirect, Route } from 'react-router-dom';
 import Detail from './OrderInfo/detail';
+import * as ROUTES from '../Services/Routes';
 
 let cheesePrice = 9.99;
 let pepperoniPrice = 12.99;
@@ -13,8 +14,8 @@ let supremePrice = 14.99;
 
 const Selection = (props) => {
     const { cards, onCardClick, order, log, detailPage, auth } = props;
-    if (!auth) { return <Redirect to="/" /> }
-    else if (detailPage === true) { return <Redirect to='/detail' /> };
+    if (!auth) { return <Redirect to={ROUTES.APP} /> }
+    else if (detailPage === true) { return <Redirect to={ROUTES.DETAIL} /> };
     return (
         <div className="container">
             <div className="card-columns">
@@ -41,7 +42,7 @@ const Selection = (props) => {
             <div className="order bg-secondary p-2 text-center">
                 <button onClick={order} className="btn btn-warning btn-lg">Place Order</button><span><Logger log={log.errors} /></span>
             </div>
-            <Route path="/detail" render={() =>
+            <Route path={ROUTES.DETAIL} render={() =>
                 <Detail
                     auth={auth}
                     orders={order} />} />
